@@ -1,3 +1,9 @@
+# Test folder
+test/
+
+# Visual Studio Code folder
+.vscode/
+
 # Prerequisites
 *.d
 
