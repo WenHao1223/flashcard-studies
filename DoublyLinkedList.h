@@ -7,10 +7,11 @@
 
 using namespace std;
 
+template <class T>
 class DoublyLinkedList {
   private:
     struct Node {
-      string data;
+      T data;
       Node* next;
       Node* prev;
     };
@@ -19,17 +20,23 @@ class DoublyLinkedList {
   public:
     DoublyLinkedList();
 
-    void editNode(string data);
-    void searchNode(string data) const;
+    void editNode(T data);
+    void searchNode(T data) const;
 
-    void deleteNode(string data);
+    void deleteNode(T data);
 
     ~DoublyLinkedList();
 
-    void insertNode(string data);
+    void insertNode(T data);
     
     void displayList() const;
     // void displayListOneByOne() const;
 };
+
+template class DoublyLinkedList <string>;
+template class DoublyLinkedList <int>;
+template class DoublyLinkedList <char>;
+template class DoublyLinkedList <double>;
+template class DoublyLinkedList <float>;
 
 #endif

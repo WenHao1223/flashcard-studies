@@ -1,11 +1,13 @@
 #include "DoublyLinkedList.h"
 
-DoublyLinkedList::DoublyLinkedList() {
+template <class T>
+DoublyLinkedList<T>::DoublyLinkedList() {
   head = nullptr;
   tail = nullptr;
 }
 
-void DoublyLinkedList::editNode(string data) {
+template <class T>
+void DoublyLinkedList<T>::editNode(T data) {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->data == data) {
@@ -18,7 +20,8 @@ void DoublyLinkedList::editNode(string data) {
   cout << "Data not found." << endl;
 }
 
-void DoublyLinkedList::searchNode(string data) const {
+template <class T>
+void DoublyLinkedList<T>::searchNode(T data) const {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->data == data) {
@@ -30,7 +33,8 @@ void DoublyLinkedList::searchNode(string data) const {
   cout << "Data not found." << endl;
 }
 
-void DoublyLinkedList::deleteNode(string data) {
+template <class T>
+void DoublyLinkedList<T>::deleteNode(T data) {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->data == data) {
@@ -56,7 +60,8 @@ void DoublyLinkedList::deleteNode(string data) {
   cout << "Data not found." << endl;
 }
 
-DoublyLinkedList::~DoublyLinkedList() {
+template <class T>
+DoublyLinkedList<T>::~DoublyLinkedList() {
   Node* temp = head;
   while (temp != nullptr) {
     Node* next = temp->next;
@@ -65,7 +70,8 @@ DoublyLinkedList::~DoublyLinkedList() {
   }
 }
 
-void DoublyLinkedList::insertNode(string data) {
+template <class T>
+void DoublyLinkedList<T>::insertNode(T data) {
   Node* newNode = new Node;
   newNode->data = data;
   newNode->next = nullptr;
@@ -80,7 +86,8 @@ void DoublyLinkedList::insertNode(string data) {
   }
 }
 
-void DoublyLinkedList::displayList() const {
+template <class T>
+void DoublyLinkedList<T>::displayList() const {
   Node* temp = head;
   while (temp != nullptr) {
     cout << temp->data << endl;
@@ -89,7 +96,7 @@ void DoublyLinkedList::displayList() const {
 }
 
 // @WenHao1223 do in composition
-// void DoublyLinkedList::displayListOneByOne() const {
+// void DoublyLinkedList<T>::displayListOneByOne() const {
 //   Node* temp = tail;
 //   while (temp != nullptr) {
 //     cout << temp->data << endl;

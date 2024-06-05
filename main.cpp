@@ -9,14 +9,14 @@ using namespace std;
 #include "DoublyLinkedList.h"
 
 int main () {
-  DoublyLinkedList list;
+  DoublyLinkedList <string> list;
 
   list.insertNode("Apple");
   list.insertNode("Banana");
   list.insertNode("Cherry");
 
   list.displayList();
-  list.editNode("Banana");
+  list.editNode("Cherry");
   list.displayList();
   list.searchNode("Banana");
   list.deleteNode("Banana");
