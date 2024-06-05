@@ -8,19 +8,19 @@ using namespace std;
 
 #include "DoublyLinkedList.h"
 
-class DescriptionList : public DoublyLinkedList <string> {
+class StringList : public DoublyLinkedList <string> {
   private:
-    string description;
+    string value;
   public:
     // constructor
-    DescriptionList();
+    StringList();
     // destructor
-    ~DescriptionList();
+    ~StringList();
 
     // mutator
-    void setDescription(string description);
+    void setValue(string value);
     // accessor
-    string getDescription() const;
+    string getValue() const;
 };
 
 #endif
