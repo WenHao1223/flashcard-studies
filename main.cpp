@@ -9,18 +9,23 @@ using namespace std;
 #include "DoublyLinkedList.h"
 
 int main () {
-  DoublyLinkedList <string> list;
+  // Case 1
+  DoublyLinkedList <string> colorList;
 
-  list.insertNode("Apple");
-  list.insertNode("Banana");
-  list.insertNode("Cherry");
+  colorList.insertNode("Apple", "Red");
+  colorList.insertNode("Banana", "Yellow");
+  colorList.insertNode("Cherry", "Red");
+  colorList.displayList();
 
-  list.displayList();
-  list.editNode("Cherry");
-  list.displayList();
-  list.searchNode("Banana");
-  list.deleteNode("Banana");
-  list.displayList();
+  colorList.editNode("Cherry", "Pink");
+  colorList.displayList();
+
+  colorList.searchQuestionNode("Banana");
+  colorList.searchNode("Yellow");
+  
+  colorList.deleteQuestionNode("Banana");
+  colorList.deleteNode("Red");
+  colorList.displayList();
 
   return 0;
 }

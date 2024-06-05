@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
 
 using namespace std;
 
@@ -11,6 +10,7 @@ template <class T>
 class DoublyLinkedList {
   private:
     struct Node {
+      string question;
       T data;
       Node* next;
       Node* prev;
@@ -20,17 +20,18 @@ class DoublyLinkedList {
   public:
     DoublyLinkedList();
 
-    void editNode(T data);
+    void editNode(string question, T data);
+    void searchQuestionNode(string question) const;
     void searchNode(T data) const;
 
+    void deleteQuestionNode(string question);
     void deleteNode(T data);
 
     ~DoublyLinkedList();
 
-    void insertNode(T data);
+    void insertNode(string question, T data);
     
     void displayList() const;
-    // void displayListOneByOne() const;
 };
 
 template class DoublyLinkedList <string>;
