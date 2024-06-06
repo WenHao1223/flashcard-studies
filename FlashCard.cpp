@@ -74,7 +74,7 @@ void FlashCard<T1, T2, T3, T4, T5>::displayQuestionList() const {
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardNoAnswer(T1 question) const {
-  string border = "+------------------------------------------------------------------------------------------------------+";
+  const string border = "+------------------------------------------------------------------------------------------------------+";
 
   cout << border << endl;
   cout << "| " << setw(100) << left << "Difficulty: " + to_string(difficulties.getNodeValue(question)) << " |" << endl;
@@ -88,7 +88,7 @@ void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardNoAnswer(T1 question) const 
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardWithAnswer(T1 question) const {
-  string border = "+------------------------------------------------------------------------------------------------------+";
+  const string border = "+------------------------------------------------------------------------------------------------------+";
 
   cout << border << endl;
   cout << "| " << setw(100) << left << "Difficulty: " + to_string(difficulties.getNodeValue(question)) << " |" << endl;

@@ -140,7 +140,14 @@ template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::displayList() const {
   Node* temp = head;
   while (temp != nullptr) {
-    cout << temp->question << ": " << temp->data << endl;
+    const string border = "+------------------------------------------";
+    cout << border << endl;
+    cout << "Data found." << endl;
+    cout << endl;
+    cout << setw(18) << left << "Question: " << temp->question << endl;
+    cout << setw(18) << left << "Data: " << temp->data << endl;
+    cout << border << endl;
+
     temp = temp->next;
   }
 

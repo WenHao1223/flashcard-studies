@@ -2,7 +2,9 @@
 #define DOUBLY_LINKED_LIST_CPP
 
 #include <iostream>
+#include <iomanip>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
