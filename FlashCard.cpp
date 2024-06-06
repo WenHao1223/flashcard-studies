@@ -7,18 +7,19 @@ template <class T1, class T2, class T3, class T4, class T5>
 FlashCard<T1, T2, T3, T4, T5>::~FlashCard() {}
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::editNode(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
+void FlashCard<T1, T2, T3, T4, T5>::editCard(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
   cout << "Editing question: " << question << endl;
   if (questions.searchQuestionNode(question) == -1) {
     cout << "Question not found." << endl;
     // exit the function
     return;
   }
+  descriptions.editNode(question, description);
   operations.editNode(question, operation);
   answers.editNode(question, answer);
   difficulties.editNode(question, difficulty);
 
-  cout << "Question edited. " << endl;
+  cout << "Card edited. " << endl;
   displayFlashCardWithAnswer(question);
 }
 
@@ -38,7 +39,12 @@ void FlashCard<T1, T2, T3, T4, T5>::displayDataField(T1 question, string field) 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::searchQuestionNode(T1 question) const {
   cout << "Searching for question: " << question << endl;
-  questions.searchQuestionNode(question);
+  int result = questions.searchQuestionNode(question);
+  if (result == -1) {
+    cout << "Question not found." << endl;
+  } else {
+    displayFlashCardWithAnswer(question);
+  }
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
@@ -66,11 +72,12 @@ void FlashCard<T1, T2, T3, T4, T5>::searchDifficulty(T5 data) const {
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::deleteQuestionNode(T1 question) {
+  cout << "Deleting question: " << question << endl;
   questions.deleteQuestionNode(question);
-  descriptions.deleteQuestionNode(question);
-  operations.deleteQuestionNode(question);
-  answers.deleteQuestionNode(question);
-  difficulties.deleteQuestionNode(question);
+  descriptions.deleteNode(descriptions.getNodeValue(question));
+  operations.deleteNode(operations.getNodeValue(question));
+  answers.deleteNode(answers.getNodeValue(question));
+  difficulties.deleteNode(difficulties.getNodeValue(question));
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
@@ -89,11 +96,12 @@ void FlashCard<T1, T2, T3, T4, T5>::insertNode(T1 question, T2 description, T3 o
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::displayAllFlashCard() const {
-  T1 currentQuestion = questions.getNextNodeValue(T1());
-  while (currentQuestion != "") {
-    displayFlashCardWithAnswer(currentQuestion);
+  T1 currentQuestion = questions.getHeadValue();
+  displayFlashCardWithAnswer(currentQuestion);
+  do {
     currentQuestion = questions.getNextNodeValue(currentQuestion);
-  }
+    displayFlashCardWithAnswer(currentQuestion);
+  } while (currentQuestion != questions.getTailValue());
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
@@ -179,6 +187,26 @@ void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardOneByOne() const {
       cout << "Invalid option." << endl;
     }
   }
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+T2 FlashCard<T1, T2, T3, T4, T5>::getDescritionValue(T1 question) const {
+  return descriptions.getNodeValue(question);
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+T3 FlashCard<T1, T2, T3, T4, T5>::getOperationValue(T1 question) const {
+  return operations.getNodeValue(question);
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+T4 FlashCard<T1, T2, T3, T4, T5>::getAnswerValue(T1 question) const {
+  return answers.getNodeValue(question);
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+T5 FlashCard<T1, T2, T3, T4, T5>::getDifficultyValue(T1 question) const {
+  return difficulties.getNodeValue(question);
 }
 
 template class FlashCard<string, string, string, double, int>;

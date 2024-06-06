@@ -36,6 +36,7 @@ template <class T1, class T2>
 int DoublyLinkedList<T1, T2>::searchNode(T2 data) const {
   const string border = "+------------------------------------------+";
   Node* temp = head;
+  bool searched = false;
   while (temp != nullptr) {
     if (temp->data == data) {
       cout << border << endl;
@@ -43,9 +44,12 @@ int DoublyLinkedList<T1, T2>::searchNode(T2 data) const {
       cout << "Question: " << temp->question << endl;
       cout << "Data: " << temp->data << endl;
       cout << border << endl;
-      return 1;
+      searched = true;
     }
     temp = temp->next;
+  }
+  if (searched) {
+    return 1;
   }
   cout << border << endl;
   cout << "Data not found." << endl;
@@ -61,26 +65,26 @@ void DoublyLinkedList<T1, T2>::deleteQuestionNode(T1 question) {
       if (temp == head) {
         head = temp->next;
         head->prev = nullptr;
-        cout << "Question " << question << " deleted." << endl;
+        cout << "Card '" << question << "' deleted." << endl;
         delete temp;
         return;
       } else if (temp == tail) {
         tail = temp->prev;
         tail->next = nullptr;
-        cout << "Question " << question << " deleted." << endl;
+        cout << "Card '" << question << "' deleted." << endl;
         delete temp;
         return;
       } else {
         temp->prev->next = temp->next;
         temp->next->prev = temp->prev;
-        cout << "Question " << question << " deleted." << endl;
+        cout << "Card '" << question << "' deleted." << endl;
         delete temp;
         return;
       }
     }
     temp = temp->next;
   }
-  cout << "Question not found." << endl;
+  cout << "Card not found." << endl;
 }
 
 template <class T1, class T2>
@@ -91,19 +95,16 @@ void DoublyLinkedList<T1, T2>::deleteNode(T2 data) {
       if (temp == head) {
         head = temp->next;
         head->prev = nullptr;
-        cout << "Data " << data << " deleted." << endl;
         delete temp;
         return;
       } else if (temp == tail) {
         tail = temp->prev;
         tail->next = nullptr;
-        cout << "Data " << data << " deleted." << endl;
         delete temp;
         return;
       } else {
         temp->prev->next = temp->next;
         temp->next->prev = temp->prev;
-        cout << "Data " << data << " deleted." << endl;
         delete temp;
         return;
       }

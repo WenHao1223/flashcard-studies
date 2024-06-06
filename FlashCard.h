@@ -19,7 +19,7 @@ class FlashCard {
   public:
     FlashCard();
 
-    void editNode(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty);
+    void editCard(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty);
     void displayDataField(T1 question, string field) const;
 
     void searchQuestionNode(T1 question) const;
@@ -35,14 +35,16 @@ class FlashCard {
     void insertNode(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty);
 
     void displayAllFlashCard() const;
-
     void displayQuestionList() const;
     void displayFlashCardNoAnswer(T1 question) const;
     void displayFlashCardWithAnswer(T1 question) const;
 
     void displayFlashCardOneByOne() const;
 
-    void getQuestionsValue(DoublyLinkedList <T1, T2> questions);
+    T2 getDescritionValue(T1 question) const;
+    T3 getOperationValue(T1 question) const;
+    T4 getAnswerValue(T1 question) const;
+    T5 getDifficultyValue(T1 question) const;
 
     void accessQuestions(DoublyLinkedList<T1, T1>& list);
 };
