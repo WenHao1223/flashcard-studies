@@ -24,8 +24,4 @@ class ValueList : public DoublyLinkedList <T1, T2> {
     T2 getValue() const;
 };
 
-template class ValueList <string, string>;
-template class ValueList <string, int>;
-template class ValueList <string, double>;
-
 #endif

@@ -34,8 +34,4 @@ class DoublyLinkedList {
     void displayList() const;
 };
 
-template class DoublyLinkedList <string, string>;
-template class DoublyLinkedList <string, int>;
-template class DoublyLinkedList <string, double>;
-
 #endif

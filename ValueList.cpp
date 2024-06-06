@@ -15,3 +15,7 @@ template <class T1, class T2>
 T2 ValueList<T1, T2>::getValue() const {
   return value;
 }
+
+template class ValueList <string, string>;
+template class ValueList <string, int>;
+template class ValueList <string, double>;

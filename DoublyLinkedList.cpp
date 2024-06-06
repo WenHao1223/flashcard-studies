@@ -143,3 +143,7 @@ void DoublyLinkedList<T1, T2>::displayList() const {
     temp = temp->next;
   }
 }
+
+template class DoublyLinkedList <string, string>;
+template class DoublyLinkedList <string, int>;
+template class DoublyLinkedList <string, double>;
