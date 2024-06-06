@@ -8,11 +8,18 @@ FlashCard<T1, T2, T3, T4, T5>::~FlashCard() {}
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::editNode(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
-  questions.editNode(question, description);
-  descriptions.editNode(question, description);
+  cout << "Editing question: " << question << endl;
+  if (questions.searchQuestionNode(question) == -1) {
+    cout << "Question not found." << endl;
+    // exit the function
+    return;
+  }
   operations.editNode(question, operation);
   answers.editNode(question, answer);
   difficulties.editNode(question, difficulty);
+
+  cout << "Edited question: " << question << endl;
+  displayFlashCard(question);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
@@ -44,7 +51,7 @@ void FlashCard<T1, T2, T3, T4, T5>::deleteQuestionNode(T1 question) {
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::insertNode(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
-  questions.insertNode(question, description);
+  questions.insertNode(question, question);
   descriptions.insertNode(question, description);
   operations.insertNode(question, operation);
   answers.insertNode(question, answer);
@@ -67,11 +74,17 @@ void FlashCard<T1, T2, T3, T4, T5>::displayQuestionList() const {
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::displayFlashCard(T1 question) const {
-  questions.searchQuestionNode(question);
-  descriptions.searchQuestionNode(question);
-  operations.searchQuestionNode(question);
-  answers.searchQuestionNode(question);
-  difficulties.searchQuestionNode(question);
+  string border = "+------------------------------------------------------------------------------------------------------+";
+
+  cout << border << endl;
+  cout << "| " << setw(100) << left << "Difficulty: " + to_string(difficulties.getNodeValue(question)) << " |" << endl;
+  cout << "| " << setw(100) << left << " " << " |" << endl;
+  cout << "| " << setw(100) << left << questions.getNodeValue(question) << " |" << endl;
+  cout << "| " << setw(100) << left << descriptions.getNodeValue(question) << " |" << endl;
+  cout << "| " << setw(100) << left << ("<" + operations.getNodeValue(question) + ">") << " |" << endl;
+  cout << "| " << setw(100) << left << " " << " |" << endl;
+  cout << "| " << setw(100) << left << answers.getNodeValue(question) << " |" << endl;
+  cout << border << endl;
 }
 
 template <class T1, class T2, class T3, class T4, class T5>

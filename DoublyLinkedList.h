@@ -21,8 +21,8 @@ class DoublyLinkedList {
     DoublyLinkedList();
 
     void editNode(T1 question, T2 data);
-    void searchQuestionNode(T1 question) const;
-    void searchNode(T2 data) const;
+    int searchQuestionNode(T1 question) const;
+    int searchNode(T2 data) const;
 
     void deleteQuestionNode(T1 question);
     void deleteNode(T2 data);
@@ -32,6 +32,8 @@ class DoublyLinkedList {
     void insertNode(T1 question, T2 data);
     
     void displayList() const;
+
+    T2 getNodeValue(T1 question) const;
 };
 
 #endif

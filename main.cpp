@@ -95,7 +95,7 @@ int main () {
   flashCard.displayQuestionList();
   flashCard.displayFlashCard("5 - 3 = ?");
 
-  flashCard.displayFlashCardOneByOne();
+  // flashCard.displayFlashCardOneByOne();
 
   return 0;
 }
