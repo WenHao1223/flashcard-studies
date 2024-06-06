@@ -85,6 +85,8 @@ int main () {
 
   flashCard.displayAllFlashCard();
 
+  flashCard.displayQuestionList();
+
   // flashCard.editNode("5 + 3 = ?", "What is 5 plus 3?", "addition", 8, 5);
   // flashCard.displayAllFlashCard();
 

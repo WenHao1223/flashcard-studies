@@ -154,13 +154,25 @@ void DoublyLinkedList<T1, T2>::insertNode(T1 question, T2 data) {
 }
 
 template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::displayQuestionList() const {
+  Node* temp = head;
+  int i = 0;
+  while (temp != nullptr) {
+    cout << ++i << ". " << temp->question << endl;
+    temp = temp->next;
+  }
+
+  if (head == nullptr) {
+    cout << "List is empty." << endl;
+  }
+}
+
+template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::displayList() const {
   Node* temp = head;
   while (temp != nullptr) {
     const string border = "+------------------------------------------";
     cout << border << endl;
-    cout << "Data found." << endl;
-    cout << endl;
     cout << setw(18) << left << "Question: " << temp->question << endl;
     cout << setw(18) << left << "Data: " << temp->data << endl;
     cout << border << endl;

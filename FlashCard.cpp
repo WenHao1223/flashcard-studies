@@ -74,7 +74,7 @@ void FlashCard<T1, T2, T3, T4, T5>::displayAllFlashCard() const {
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::displayQuestionList() const {
-  questions.displayList();
+  questions.displayQuestionList();
 }
 
 template <class T1, class T2, class T3, class T4, class T5>

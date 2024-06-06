@@ -33,6 +33,7 @@ class DoublyLinkedList {
 
     void insertNode(T1 question, T2 data);
     
+    void displayQuestionList() const;
     void displayList() const;
 
     T2 getNodeValue(T1 question) const;
