@@ -1,13 +1,13 @@
 #include "DoublyLinkedList.h"
 
-template <class T>
-DoublyLinkedList<T>::DoublyLinkedList() {
+template <class T1, class T2>
+DoublyLinkedList<T1, T2>::DoublyLinkedList() {
   head = nullptr;
   tail = nullptr;
 }
 
-template <class T>
-void DoublyLinkedList<T>::editNode(string question, T data) {
+template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::editNode(T1 question, T2 data) {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->question == question) {
@@ -20,8 +20,8 @@ void DoublyLinkedList<T>::editNode(string question, T data) {
   cout << "Data not found." << endl;
 }
 
-template <class T>
-void DoublyLinkedList<T>::searchQuestionNode(string question) const {
+template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::searchQuestionNode(T1 question) const {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->question == question) {
@@ -33,8 +33,8 @@ void DoublyLinkedList<T>::searchQuestionNode(string question) const {
   cout << "Question not found." << endl;
 }
 
-template <class T>
-void DoublyLinkedList<T>::searchNode(T data) const {
+template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::searchNode(T2 data) const {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->data == data) {
@@ -46,8 +46,8 @@ void DoublyLinkedList<T>::searchNode(T data) const {
   cout << "Data not found." << endl;
 }
 
-template <class T>
-void DoublyLinkedList<T>::deleteQuestionNode(string question) {
+template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::deleteQuestionNode(T1 question) {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->question == question) {
@@ -76,8 +76,8 @@ void DoublyLinkedList<T>::deleteQuestionNode(string question) {
   cout << "Question not found." << endl;
 }
 
-template <class T>
-void DoublyLinkedList<T>::deleteNode(T data) {
+template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::deleteNode(T2 data) {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->data == data) {
@@ -106,8 +106,8 @@ void DoublyLinkedList<T>::deleteNode(T data) {
   cout << "Data not found." << endl;
 }
 
-template <class T>
-DoublyLinkedList<T>::~DoublyLinkedList() {
+template <class T1, class T2>
+DoublyLinkedList<T1, T2>::~DoublyLinkedList() {
   Node* temp = head;
   while (temp != nullptr) {
     Node* next = temp->next;
@@ -116,8 +116,8 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
   }
 }
 
-template <class T>
-void DoublyLinkedList<T>::insertNode(string question, T data) {
+template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::insertNode(T1 question, T2 data) {
   Node* newNode = new Node;
   newNode->question = question;
   newNode->data = data;
@@ -135,8 +135,8 @@ void DoublyLinkedList<T>::insertNode(string question, T data) {
   cout << "Data inserted to " << question << ": " << data << endl;
 }
 
-template <class T>
-void DoublyLinkedList<T>::displayList() const {
+template <class T1, class T2>
+void DoublyLinkedList<T1, T2>::displayList() const {
   Node* temp = head;
   while (temp != nullptr) {
     cout << temp->question << ": " << temp->data << endl;

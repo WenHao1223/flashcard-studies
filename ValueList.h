@@ -8,10 +8,10 @@ using namespace std;
 
 #include "DoublyLinkedList.h"
 
-template <class T>
-class ValueList : public DoublyLinkedList <T> {
+template <class T1, class T2>
+class ValueList : public DoublyLinkedList <T1, T2> {
   private:
-    T value;
+    T2 value;
   public:
     // constructor
     ValueList();
@@ -19,13 +19,13 @@ class ValueList : public DoublyLinkedList <T> {
     ~ValueList();
 
     // mutator
-    void setValue(T answer);
+    void setValue(T2 value);
     // accessor
-    T getValue() const;
+    T2 getValue() const;
 };
 
-template class ValueList <string>;
-template class ValueList <int>;
-template class ValueList <double>;
+template class ValueList <string, string>;
+template class ValueList <string, int>;
+template class ValueList <string, double>;
 
 #endif

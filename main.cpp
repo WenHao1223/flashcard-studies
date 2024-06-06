@@ -1,5 +1,6 @@
 // Run the following command to compile the code:
 // g++ *.cpp -o main && ./main
+// g++ *.cpp -o main && main
 
 #include <iostream>
 #include <string>
@@ -29,8 +30,8 @@ int main () {
   // colorList.displayList();
 
   // Case 2
-  ValueList <string> descriptions;
-  ValueList <string> operations;
+  ValueList <string, string> descriptions;
+  ValueList <string, string> operations;
 
   descriptions.insertNode("5 + 3 = ?", "What is 5 plus 3?");
   operations.insertNode("5 + 3 = ?", "addition");
@@ -59,13 +60,13 @@ int main () {
   operations.searchNode("times");
 
   // Case 3
-  ValueList <string> answers;
+  ValueList <string, string> answers;
   answers.insertNode("5 + 3 = ?", "Eight");
   answers.insertNode("5 - 3 = ?", "Two");
   answers.insertNode("5 * 3 = ?", "Fifteen");
   answers.insertNode("5 / 3 = ?", "One point six seven");
 
-  ValueList <double> numbers;
+  ValueList <string, double> numbers;
   numbers.insertNode("5 + 3 = ?", 8);
   numbers.insertNode("5 - 3 = ?", 2);
   numbers.insertNode("5 * 3 = ?", 15);

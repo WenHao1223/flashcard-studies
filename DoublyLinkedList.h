@@ -6,12 +6,12 @@
 
 using namespace std;
 
-template <class T>
+template <class T1, class T2>
 class DoublyLinkedList {
   private:
     struct Node {
-      string question;
-      T data;
+      T1 question;
+      T2 data;
       Node* next;
       Node* prev;
     };
@@ -20,22 +20,22 @@ class DoublyLinkedList {
   public:
     DoublyLinkedList();
 
-    void editNode(string question, T data);
-    void searchQuestionNode(string question) const;
-    void searchNode(T data) const;
+    void editNode(T1 question, T2 data);
+    void searchQuestionNode(T1 question) const;
+    void searchNode(T2 data) const;
 
-    void deleteQuestionNode(string question);
-    void deleteNode(T data);
+    void deleteQuestionNode(T1 question);
+    void deleteNode(T2 data);
 
     ~DoublyLinkedList();
 
-    void insertNode(string question, T data);
+    void insertNode(T1 question, T2 data);
     
     void displayList() const;
 };
 
-template class DoublyLinkedList <string>;
-template class DoublyLinkedList <int>;
-template class DoublyLinkedList <double>;
+template class DoublyLinkedList <string, string>;
+template class DoublyLinkedList <string, int>;
+template class DoublyLinkedList <string, double>;
 
 #endif
