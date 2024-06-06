@@ -65,11 +65,11 @@ void FlashCard<T1, T2, T3, T4, T5>::insertNode(T1 question, T2 description, T3 o
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::displayAllFlashCard() const {
-  questions.displayList();
-  descriptions.displayList();
-  operations.displayList();
-  answers.displayList();
-  difficulties.displayList();
+  T1 currentQuestion = questions.getNextNodeValue(T1());
+  while (currentQuestion != "") {
+    displayFlashCardWithAnswer(currentQuestion);
+    currentQuestion = questions.getNextNodeValue(currentQuestion);
+  }
 }
 
 template <class T1, class T2, class T3, class T4, class T5>

@@ -166,6 +166,25 @@ T2 DoublyLinkedList<T1, T2>::getNodeValue(T1 question) const {
   return T2();
 }
 
+template <class T1, class T2>
+T2 DoublyLinkedList<T1, T2>::getNextNodeValue(T1 question) const {
+  Node* temp = head;
+  
+  if (question == T1()) {
+    return head->data;
+  }
+
+  while (temp != nullptr) {
+    if (temp->question == question) {
+      if (temp->next != nullptr) {
+        return temp->next->data;
+      }
+    }
+    temp = temp->next;
+  }
+  return T2();
+}
+
 template class DoublyLinkedList <string, string>;
 template class DoublyLinkedList <string, int>;
 template class DoublyLinkedList <string, double>;

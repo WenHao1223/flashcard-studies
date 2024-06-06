@@ -36,6 +36,10 @@ class FlashCard {
     void displayFlashCardWithAnswer(T1 question) const;
 
     void displayFlashCardOneByOne() const;
+
+    void getQuestionsValue(DoublyLinkedList <T1, T2> questions);
+
+    void accessQuestions(DoublyLinkedList<T1, T1>& list);
 };
 
 #endif
