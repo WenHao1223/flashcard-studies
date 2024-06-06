@@ -36,8 +36,6 @@ class DoublyLinkedList {
 
 template class DoublyLinkedList <string>;
 template class DoublyLinkedList <int>;
-template class DoublyLinkedList <char>;
 template class DoublyLinkedList <double>;
-template class DoublyLinkedList <float>;
 
 #endif

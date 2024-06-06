@@ -7,8 +7,7 @@
 using namespace std;
 
 #include "DoublyLinkedList.h"
-#include "StringList.h"
-#include "AnswerList.h"
+#include "ValueList.h"
 
 int main () {
   // Case 1
@@ -30,8 +29,8 @@ int main () {
   // colorList.displayList();
 
   // Case 2
-  StringList descriptions;
-  StringList operations;
+  ValueList <string> descriptions;
+  ValueList <string> operations;
 
   descriptions.insertNode("5 + 3 = ?", "What is 5 plus 3?");
   operations.insertNode("5 + 3 = ?", "addition");
@@ -60,13 +59,13 @@ int main () {
   operations.searchNode("times");
 
   // Case 3
-  AnswerList <string> answers;
+  ValueList <string> answers;
   answers.insertNode("5 + 3 = ?", "Eight");
   answers.insertNode("5 - 3 = ?", "Two");
   answers.insertNode("5 * 3 = ?", "Fifteen");
   answers.insertNode("5 / 3 = ?", "One point six seven");
 
-  AnswerList <double> numbers;
+  ValueList <double> numbers;
   numbers.insertNode("5 + 3 = ?", 8);
   numbers.insertNode("5 - 3 = ?", 2);
   numbers.insertNode("5 * 3 = ?", 15);
