@@ -132,8 +132,6 @@ void DoublyLinkedList<T1, T2>::insertNode(T1 question, T2 data) {
     newNode->prev = tail;
     tail = newNode;
   }
-
-  cout << "Data inserted to " << question << ": " << data << endl;
 }
 
 template <class T1, class T2>

@@ -51,11 +51,16 @@ void FlashCard<T1, T2, T3, T4, T5>::deleteQuestionNode(T1 question) {
 
 template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::insertNode(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
+  // cout << "Inserting question: " << question << endl;
+
   questions.insertNode(question, question);
   descriptions.insertNode(question, description);
   operations.insertNode(question, operation);
   answers.insertNode(question, answer);
   difficulties.insertNode(question, difficulty);
+
+  // cout << "Inserted question: " << question << endl;
+  // displayFlashCardWithAnswer(question);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
