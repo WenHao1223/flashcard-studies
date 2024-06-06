@@ -24,12 +24,11 @@ int DoublyLinkedList<T1, T2>::searchQuestionNode(T1 question) const {
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->question == question) {
-      cout << "Question found: " << temp->question << endl;
+      // cout << "Question found: " << temp->question << endl;
       return 1;
     }
     temp = temp->next;
   }
-  cout << "Question not found." << endl;
   return -1;
 }
 
@@ -144,12 +143,20 @@ void DoublyLinkedList<T1, T2>::insertNode(T1 question, T2 data) {
       head = newNode;
       newNode->prev = nullptr;
       newNode->next = nodePtr;
+      if (nodePtr != nullptr) {
+        nodePtr->prev = newNode;
+      }
     } else {
       previousNode->next = newNode;
       newNode->prev = previousNode;
       newNode->next = nodePtr;
+
+      if (nodePtr != nullptr) {
+        nodePtr->prev = newNode;
+      } else {
+        tail = newNode;
+      }
     }
-  
   }
 }
 
@@ -198,22 +205,63 @@ T2 DoublyLinkedList<T1, T2>::getNodeValue(T1 question) const {
 }
 
 template <class T1, class T2>
+T2 DoublyLinkedList<T1, T2>::getHeadValue() const {
+  if (head != nullptr) {
+    return head->data;
+  } else {
+    return T2(); // Return default value if list is empty
+  }
+}
+
+template <class T1, class T2>
+T2 DoublyLinkedList<T1, T2>::getTailValue() const {
+  if (tail != nullptr) {
+    return tail->data;
+  } else {
+    return T2(); // Return default value if list is empty
+  }
+}
+
+template <class T1, class T2>
+T2 DoublyLinkedList<T1, T2>::getPreviousNodeValue(T1 question) const {
+  Node* temp = head;
+
+  if (question == head->question) {
+    return head->data;
+  }
+
+  while (temp != nullptr) {
+    if (temp->question == question) {
+      if (temp->prev != nullptr) {
+        return temp->prev->data;
+      } else {
+        return T2(); // Return default value if no previous node exists
+      }
+    }
+    temp = temp->next;
+  }
+  return T2(); // Return default value if question not found in the list
+}
+
+template <class T1, class T2>
 T2 DoublyLinkedList<T1, T2>::getNextNodeValue(T1 question) const {
   Node* temp = head;
-  
-  if (question == T1()) {
-    return head->data;
+
+  if (question == tail->question) {
+    return tail->data;
   }
 
   while (temp != nullptr) {
     if (temp->question == question) {
       if (temp->next != nullptr) {
         return temp->next->data;
+      } else {
+        return T2(); // Return default value if no next node exists
       }
     }
     temp = temp->next;
   }
-  return T2();
+  return T2(); // Return default value if question not found in the list
 }
 
 template class DoublyLinkedList <string, string>;

@@ -83,9 +83,9 @@ int main () {
   flashCard.insertNode("8 * 3 = ?", "What is 5 times 3?", "multiplication", 24, 3);
   flashCard.insertNode("5 / 3 = ?", "What is 5 divided by 3?", "division", 1.67, 4);
 
-  flashCard.displayAllFlashCard();
+  // flashCard.displayAllFlashCard();
 
-  flashCard.displayQuestionList();
+  // flashCard.displayQuestionList();
 
   // flashCard.editNode("5 + 3 = ?", "What is 5 plus 3?", "addition", 8, 5);
   // flashCard.displayAllFlashCard();
@@ -100,7 +100,7 @@ int main () {
   // flashCard.displayFlashCardNoAnswer("5 - 3 = ?");
   // flashCard.displayFlashCardWithAnswer("5 - 3 = ?");
 
-  // flashCard.displayFlashCardOneByOne();
+  flashCard.displayFlashCardOneByOne();
 
   return 0;
 }

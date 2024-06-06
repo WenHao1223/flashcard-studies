@@ -96,13 +96,17 @@ void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardWithAnswer(T1 question) cons
   const string border = "+------------------------------------------------------------------------------------------------------+";
 
   cout << border << endl;
-  cout << "| " << setw(100) << left << "Difficulty: " + to_string(difficulties.getNodeValue(question)) << " |" << endl;
-  cout << "| " << setw(100) << left << " " << " |" << endl;
-  cout << "| " << setw(100) << left << questions.getNodeValue(question) << " |" << endl;
-  cout << "| " << setw(100) << left << descriptions.getNodeValue(question) << " |" << endl;
-  cout << "| " << setw(100) << left << ("<" + operations.getNodeValue(question) + ">") << " |" << endl;
-  cout << "| " << setw(100) << left << " " << " |" << endl;
-  cout << "| " << setw(100) << left << answers.getNodeValue(question) << " |" << endl;
+  if (questions.searchQuestionNode(question) != -1) {
+    cout << "| " << setw(100) << left << "Difficulty: " + to_string(difficulties.getNodeValue(question)) << " |" << endl;
+    cout << "| " << setw(100) << left << " " << " |" << endl;
+    cout << "| " << setw(100) << left << questions.getNodeValue(question) << " |" << endl;
+    cout << "| " << setw(100) << left << descriptions.getNodeValue(question) << " |" << endl;
+    cout << "| " << setw(100) << left << ("<" + operations.getNodeValue(question) + ">") << " |" << endl;
+    cout << "| " << setw(100) << left << " " << " |" << endl;
+    cout << "| " << setw(100) << left << answers.getNodeValue(question) << " |" << endl;
+  } else {
+    cout << "| " << setw(100) << left << "Question reached the end." << " |" << endl;
+  }
   cout << border << endl;
 }
 
@@ -110,29 +114,45 @@ template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardOneByOne() const {
   // can press j or k to go forward or next
   // can press q to quit
-  
-  questions.displayList();
-  descriptions.displayList();
-  operations.displayList();
-  answers.displayList();
-  difficulties.displayList();
 
-  cout << "Press j to go forward, k to go back, and q to quit" << endl;
+  T1 question = questions.getHeadValue();
+  displayFlashCardWithAnswer(question);
+
   char key;
   while (key != 'q') {
-    cin >> key;
+    cout << "Press j to go back, k to go next, and q to quit" << endl;
+    do {
+      cout << "Option: ";
+      cin >> key;
+      cin.ignore();
+    } while (key != 'j' && key != 'k' && key != 'q');
+    
+    const string border = "+------------------------------------------------------------------------------------------------------+";
+    const string notFoundMesage = "|                                     Flash card reached the end.                                      |";
     if (key == 'j') {
-      questions.displayList();
-      descriptions.displayList();
-      operations.displayList();
-      answers.displayList();
-      difficulties.displayList();
+      if (question == questions.getHeadValue()) {
+        cout << border << endl;
+        cout << notFoundMesage << endl;
+        cout << border << endl;
+        displayFlashCardWithAnswer(question);
+      } else {
+        question = questions.getPreviousNodeValue(question);
+        displayFlashCardWithAnswer(question);
+      }
     } else if (key == 'k') {
-      questions.displayList();
-      descriptions.displayList();
-      operations.displayList();
-      answers.displayList();
-      difficulties.displayList();
+      if (question == questions.getTailValue()) {
+        cout << border << endl;
+        cout << notFoundMesage << endl;
+        cout << border << endl;
+        displayFlashCardWithAnswer(question);
+      } else {
+        question = questions.getNextNodeValue(question);
+        displayFlashCardWithAnswer(question);
+      }
+    } else if (key == 'q') {
+      cout << "Quitting..." << endl;
+    } else {
+      cout << "Invalid option." << endl;
     }
   }
 }
