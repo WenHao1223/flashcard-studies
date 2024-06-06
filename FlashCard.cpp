@@ -23,21 +23,45 @@ void FlashCard<T1, T2, T3, T4, T5>::editNode(T1 question, T2 description, T3 ope
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
+void FlashCard<T1, T2, T3, T4, T5>::displayDataField(T1 question, string field) const {
+  if (field == "Description") {
+    descriptions.displayNode(question, field);
+  } else if (field == "Operation") {
+    operations.displayNode(question, field);
+  } else if (field == "Answer") {
+    answers.displayNode(question, field);
+  } else if (field == "Difficulty") {
+    difficulties.displayNode(question, field);
+  }
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::searchQuestionNode(T1 question) const {
+  cout << "Searching for question: " << question << endl;
   questions.searchQuestionNode(question);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::searchNode(T1 question, string field) const {
-  if (field == "description") {
-    descriptions.displayList();
-  } else if (field == "operation") {
-    operations.displayList();
-  } else if (field == "answer") {
-    answers.displayList();
-  } else if (field == "difficulty") {
-    difficulties.displayList();
-  }
+void FlashCard<T1, T2, T3, T4, T5>::searchDescription(T2 data) const {
+  cout << "Searching for description: " << data << endl;
+  descriptions.searchNode(data);
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+void FlashCard<T1, T2, T3, T4, T5>::searchOperation(T3 data) const {
+  cout << "Searching for operation: " << data << endl;
+  operations.searchNode(data);
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+void FlashCard<T1, T2, T3, T4, T5>::searchAnswer(T4 data) const {
+  cout << "Searching for answer: " << data << endl;
+  answers.searchNode(data);
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+void FlashCard<T1, T2, T3, T4, T5>::searchDifficulty(T5 data) const {
+  difficulties.searchNode(data);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>

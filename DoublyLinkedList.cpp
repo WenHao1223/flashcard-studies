@@ -34,15 +34,22 @@ int DoublyLinkedList<T1, T2>::searchQuestionNode(T1 question) const {
 
 template <class T1, class T2>
 int DoublyLinkedList<T1, T2>::searchNode(T2 data) const {
+  const string border = "+------------------------------------------+";
   Node* temp = head;
   while (temp != nullptr) {
     if (temp->data == data) {
-      cout << "Data found: " << temp->data << " in " << temp->question << endl;
+      cout << border << endl;
+      cout << "Data found." << endl;
+      cout << "Question: " << temp->question << endl;
+      cout << "Data: " << temp->data << endl;
+      cout << border << endl;
       return 1;
     }
     temp = temp->next;
   }
+  cout << border << endl;
   cout << "Data not found." << endl;
+  cout << border << endl;
   return -1;
 }
 
@@ -175,15 +182,18 @@ void DoublyLinkedList<T1, T2>::displayQuestionList() const {
 }
 
 template <class T1, class T2>
-void DoublyLinkedList<T1, T2>::displayList() const {
+void DoublyLinkedList<T1, T2>::displayNode(T1 question, string field) const {
   Node* temp = head;
+  cout << "Displaying " << field << " for '" << question << "':" << endl;
+  const string border = "+------------------------------------------+";
   while (temp != nullptr) {
-    const string border = "+------------------------------------------";
-    cout << border << endl;
-    cout << setw(18) << left << "Question: " << temp->question << endl;
-    cout << setw(18) << left << "Data: " << temp->data << endl;
-    cout << border << endl;
-
+    if (temp->question == question) {
+      cout << border << endl;
+      cout << "Question: " << temp->question << endl;
+      cout << "Data: " << temp->data << endl;
+      cout << border << endl;
+      return;
+    }
     temp = temp->next;
   }
 
