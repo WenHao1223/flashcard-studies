@@ -120,17 +120,36 @@ DoublyLinkedList<T1, T2>::~DoublyLinkedList() {
 template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::insertNode(T1 question, T2 data) {
   Node* newNode = new Node;
+  Node* nodePtr;
+  Node* previousNode = nullptr;
+
   newNode->question = question;
   newNode->data = data;
-  newNode->next = nullptr;
-  newNode->prev = nullptr;
-  if (head == nullptr) {
+
+  if (!head) {
     head = newNode;
     tail = newNode;
+    newNode->next = nullptr;
+    newNode->prev = nullptr;
   } else {
-    tail->next = newNode;
-    newNode->prev = tail;
-    tail = newNode;
+    nodePtr = head;
+    previousNode = nullptr;
+
+    while (nodePtr != nullptr && nodePtr->question < question) {
+      previousNode = nodePtr;
+      nodePtr = nodePtr->next;
+    }
+
+    if (previousNode == nullptr) {
+      head = newNode;
+      newNode->prev = nullptr;
+      newNode->next = nodePtr;
+    } else {
+      previousNode->next = newNode;
+      newNode->prev = previousNode;
+      newNode->next = nodePtr;
+    }
+  
   }
 }
 

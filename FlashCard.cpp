@@ -18,7 +18,7 @@ void FlashCard<T1, T2, T3, T4, T5>::editNode(T1 question, T2 description, T3 ope
   answers.editNode(question, answer);
   difficulties.editNode(question, difficulty);
 
-  cout << "Edited question: " << question << endl;
+  cout << "Question edited. " << endl;
   displayFlashCardWithAnswer(question);
 }
 
