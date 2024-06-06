@@ -32,7 +32,8 @@ class FlashCard {
     void displayAllFlashCard() const;
 
     void displayQuestionList() const;
-    void displayFlashCard(T1 question) const;
+    void displayFlashCardNoAnswer(T1 question) const;
+    void displayFlashCardWithAnswer(T1 question) const;
 
     void displayFlashCardOneByOne() const;
 };

@@ -19,7 +19,7 @@ void FlashCard<T1, T2, T3, T4, T5>::editNode(T1 question, T2 description, T3 ope
   difficulties.editNode(question, difficulty);
 
   cout << "Edited question: " << question << endl;
-  displayFlashCard(question);
+  displayFlashCardWithAnswer(question);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
@@ -73,7 +73,21 @@ void FlashCard<T1, T2, T3, T4, T5>::displayQuestionList() const {
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::displayFlashCard(T1 question) const {
+void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardNoAnswer(T1 question) const {
+  string border = "+------------------------------------------------------------------------------------------------------+";
+
+  cout << border << endl;
+  cout << "| " << setw(100) << left << "Difficulty: " + to_string(difficulties.getNodeValue(question)) << " |" << endl;
+  cout << "| " << setw(100) << left << " " << " |" << endl;
+  cout << "| " << setw(100) << left << questions.getNodeValue(question) << " |" << endl;
+  cout << "| " << setw(100) << left << descriptions.getNodeValue(question) << " |" << endl;
+  cout << "| " << setw(100) << left << ("<" + operations.getNodeValue(question) + ">") << " |" << endl;
+  cout << "| " << setw(100) << left << " " << " |" << endl;
+  cout << border << endl;
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardWithAnswer(T1 question) const {
   string border = "+------------------------------------------------------------------------------------------------------+";
 
   cout << border << endl;
