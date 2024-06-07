@@ -137,7 +137,7 @@ void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardWithAnswer(T1 question) cons
     cout << "| " << setw(100) << left << " " << " |" << endl;
     cout << "| " << setw(100) << left << answers.getNodeValue(question) << " |" << endl;
   } else {
-    cout << "| " << setw(100) << left << "Question reached the end." << " |" << endl;
+    cout << "| " << setw(100) << left << "Question not found." << " |" << endl;
   }
   cout << border << endl;
 }

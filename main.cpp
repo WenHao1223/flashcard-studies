@@ -246,6 +246,11 @@ int main () {
               answer = flashCardScoring.getAnswerValue(questionToEdit);
               difficulty = flashCardScoring.getDifficultyValue(questionToEdit);
 
+              if (description == "") {
+                // if the question does not exist
+                break;
+              }
+
               char fieldChoice;
               do {
                 cout << "Which field to edit: " << endl;
@@ -265,8 +270,29 @@ int main () {
                   break;
                 }
                 case '2': {
-                  cout << "Enter the new operation: ";
-                  getline(cin, operation);
+                  cout << "1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\n";
+                  char operationChar;
+                  do {
+                    cout << "Enter the new operation: ";
+                    cin >> operationChar;
+                    cin.ignore();
+                  } while (operationChar < '1' || operationChar > '4');
+
+                  switch (operationChar) {
+                    case '1':
+                      operation = "addition";
+                      break;
+                    case '2':
+                      operation = "subtraction";
+                      break;
+                    case '3':
+                      operation = "multiplication";
+                      break;
+                    case '4':
+                      operation = "division";
+                      break;
+                  }
+                  
                   break;
                 }
                 case '3': {
