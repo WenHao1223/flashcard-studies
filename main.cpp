@@ -12,6 +12,59 @@ using namespace std;
 #include "FlashCard.h"
 #include "Score.h"
 
+template <class T1, class T2, class T3, class T4, class T5>
+void editFileRow(string filename, T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
+  fstream file;
+  file.open(filename, ios::in);
+  string line;
+  string questionLine = "";
+  string newFileLines = "";
+
+  while (!file.eof()) {
+    getline(file, questionLine, '\t');
+    getline(file, line);
+
+    if (questionLine == question) {
+      newFileLines += question + "\t" + description + "\t" + operation + "\t" + to_string(answer) + "\t" + to_string(difficulty) + "\n";
+    } else {
+      newFileLines += questionLine + "\t" + line + "\n";
+    }
+  }
+
+  // Remove last line
+  newFileLines = newFileLines.substr(0, newFileLines.length()-1);
+  file.close();
+
+  file.open(filename, ios::out);
+  file << newFileLines;
+  file.close();
+}
+
+void deleteFileRow(string filename, string question) {
+  fstream file;
+  file.open(filename, ios::in);
+  string line;
+  string questionLine = "";
+  string newFileLines = "";
+
+  while (!file.eof()) {
+    getline(file, questionLine, '\t');
+    getline(file, line);
+
+    if (questionLine != question) {
+      newFileLines += questionLine + "\t" + line + "\n";
+    }
+  }
+
+  // Remove last line
+  newFileLines = newFileLines.substr(0, newFileLines.length()-1);
+  file.close();
+
+  file.open(filename, ios::out);
+  file << newFileLines;
+  file.close();
+}
+
 int main () {
   bool terminate = false;
   do {
@@ -34,13 +87,11 @@ int main () {
 
     switch (choice) {
       case '1': {
-
-        ifstream file;
-        string fileName;
-
+        fstream file;
+        string fileName = "flashCard.txt";
         try {
           do {
-            file.open("flashCard.txt");
+            file.open(fileName, ios::in);
 
             if(!file) {
               throw "File not found.";
@@ -51,7 +102,6 @@ int main () {
           break;
         }
         
-        // 5 + 3 = ?	What is 5 plus 3?	addition	8	1
         while (!file.eof()) {
           getline(file, question, '\t');
           getline(file, description, '\t');
@@ -186,16 +236,14 @@ int main () {
                   break;
                 }
                 case '5': {
+                  char difficultyChar;
                   do {
-                    if (cin.fail()) {
-                      cin.clear();
-                      cin.ignore(10000, '\n');
-                      cout << "Invalid input. Please enter a number." << endl;
-                      cout << "Enter the answer to search: ";
-                      cin >> search;
-                      cin.ignore();
-                    }
-                  } while (search == "");
+                    cout << "Enter the difficulty to search (1 - 5): ";
+                    cin >> difficultyChar;
+                    cin.ignore();
+                  } while (difficultyChar < '1' || difficultyChar > '5');
+
+                  difficulty = difficultyChar - '0';
 
                   try {
                     if (flashCardScoring.searchDifficulty(stoi(search)) == -1) {
@@ -230,11 +278,13 @@ int main () {
                   break;
                 }
 
-                cout << "Enter the description: ";
-                getline(cin, description);
+                do {
+                  cout << "Enter the description: ";
+                  getline(cin, description);
+                } while (description == "");
 
                 do {
-                  cout << "1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\nEnter the operation: ";
+                  cout << "1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\nEnter the operation (1 - 4): ";
                   cin >> operationChoice;
                 } while (operationChoice < '1' || operationChoice > '4');
 
@@ -254,18 +304,29 @@ int main () {
                 }
 
                 do {
+                  if(cin.fail()) {
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                  }
                   cout << "Enter the answer: ";
                   cin >> answer;
-                  cin.ignore();
                 } while (cin.fail());
 
+                char difficultyChoice;
                 do {
-                  cout << "Enter the difficulty: ";
-                  cin >> difficulty;
-                  cin.ignore();
-                } while (cin.fail());
+                  cout << "Enter the difficulty (1 - 5): ";
+                  cin >> difficultyChoice;
+                } while (difficultyChoice < '1' || difficultyChoice > '5');
+
+                difficulty = difficultyChoice - '0';
 
                 flashCardScoring.insertNode(question, description, operation, answer, difficulty);
+
+                // file handling
+                file.open(fileName, ios::app);
+                file << '\n' << question << "\t" << description << "\t" << operation << "\t" << answer << "\t" << difficulty;
+                file.close();
+
                 cout << "Card added." << endl;
                 flashCardScoring.displayFlashCardWithAnswer(question);
                 cout << "Do you want to add another card? (Y/N): ";
@@ -372,6 +433,9 @@ int main () {
 
               flashCardScoring.editCard(questionToEdit, description, operation, answer, difficulty);
 
+              // file handling
+              editFileRow <string, string, string, double, int> (fileName, questionToEdit, description, operation, answer, difficulty);
+
               break;
             }
             case '7': {
@@ -402,6 +466,7 @@ int main () {
                 break;
               }
               flashCardScoring.deleteQuestionNode(questionToDel);
+              deleteFileRow(fileName, questionToDel);
               break;
             }
             case '8': {
