@@ -10,6 +10,7 @@ using namespace std;
 
 #include "DoublyLinkedList.h"
 #include "FlashCard.h"
+#include "Score.h"
 
 int main () {
 
@@ -60,7 +61,7 @@ int main () {
       cin.ignore();
     } while (choice != '1' && choice != '2');
 
-    FlashCard <string, string, string, double, int> flashCard;
+    Score <string, string, string, double, int> flashCardScoring;
     string question, description, operation;
     double answer;
     int difficulty;
@@ -93,7 +94,7 @@ int main () {
           file >> difficulty;
           file.ignore();
 
-          flashCard.insertNode(question, description, operation, answer, difficulty);
+          flashCardScoring.insertNode(question, description, operation, answer, difficulty);
         }
         file.close();
 
@@ -111,7 +112,8 @@ int main () {
             cout << "5. Add a flashcard" << endl;
             cout << "6. Edit a flashcard" << endl;
             cout << "7. Delete a flashcard" << endl;
-            cout << "8. Exit / Load from different flash card file" << endl;
+            cout << "8. Play flashcard game" << endl;
+            cout << "9. Exit / Load from different flash card file" << endl;
             cout << "Enter your choice: ";
             cin >> menuChoice;
             cin.ignore();
@@ -120,17 +122,17 @@ int main () {
           switch (menuChoice) {
             case '1': {
               cout << "\nDisplaying all flashcards:"<<endl;
-              flashCard.displayAllFlashCard();
+              flashCardScoring.displayAllFlashCard();
               break;
             }
             case '2': {
               cout << "\nDisplaying all flash card questions:"<<endl;
-              flashCard.displayQuestionList();
+              flashCardScoring.displayQuestionList();
               break;
             }
             case '3': {
               cout << "\nDisplaying flashcards one by one:"<<endl;
-              flashCard.displayFlashCardOneByOne();
+              flashCardScoring.displayFlashCardOneByOne();
               break;
             }
             case '4': {
@@ -149,37 +151,37 @@ int main () {
 
               switch (choice) {
                 case '1': {
-                  flashCard.displayQuestionList();
+                  flashCardScoring.displayQuestionList();
                   cout << "Enter the question to search: ";
                   cin.ignore();
                   getline(cin, search);
-                  flashCard.searchQuestionNode(search);
+                  flashCardScoring.searchQuestionNode(search);
                   break;
                 }
                 case '2': {
                   cout << "Enter the description to search: ";
                   cin.ignore();
                   getline(cin, search);
-                  flashCard.searchDescription(search);
+                  flashCardScoring.searchDescription(search);
                   break;
                 }
                 case '3': {
                   cout << "Enter the operation to search: ";
                   cin.ignore();
                   getline(cin, search);
-                  flashCard.searchOperation(search);
+                  flashCardScoring.searchOperation(search);
                   break;
                 }
                 case '4': {
                   cout << "Enter the answer to search: ";
                   cin >> search;
-                  flashCard.searchAnswer(stod(search));
+                  flashCardScoring.searchAnswer(stod(search));
                   break;
                 }
                 case '5': {
                   cout << "Enter the difficulty to search: ";
                   cin >> search;
-                  flashCard.searchDifficulty(stoi(search));
+                  flashCardScoring.searchDifficulty(stoi(search));
                   break;
                 }
               }
@@ -220,28 +222,28 @@ int main () {
                 cout << "Enter the difficulty: ";
                 cin >> difficulty;
 
-                flashCard.insertNode(question, description, operation, answer, difficulty);
+                flashCardScoring.insertNode(question, description, operation, answer, difficulty);
                 cout << "Card added." << endl;
-                flashCard.displayFlashCardWithAnswer(question);
+                flashCardScoring.displayFlashCardWithAnswer(question);
                 cout << "Do you want to add another card? (y/n): ";
                 cin >> choice;
               } while(choice == "y" || choice == "Y");
               break;
             }
             case '6': {
-              flashCard.displayQuestionList();
+              flashCardScoring.displayQuestionList();
 
               string questionToEdit;
               cout << "Enter the question to edit: ";
               getline(cin, questionToEdit);
 
               // set the old card details
-              flashCard.displayFlashCardWithAnswer(questionToEdit);
+              flashCardScoring.displayFlashCardWithAnswer(questionToEdit);
 
-              description = flashCard.getDescritionValue(questionToEdit);
-              operation = flashCard.getOperationValue(questionToEdit);
-              answer = flashCard.getAnswerValue(questionToEdit);
-              difficulty = flashCard.getDifficultyValue(questionToEdit);
+              description = flashCardScoring.getDescritionValue(questionToEdit);
+              operation = flashCardScoring.getOperationValue(questionToEdit);
+              answer = flashCardScoring.getAnswerValue(questionToEdit);
+              difficulty = flashCardScoring.getDifficultyValue(questionToEdit);
 
               char fieldChoice;
               do {
@@ -280,12 +282,12 @@ int main () {
                 }
               }
 
-              flashCard.editCard(questionToEdit, description, operation, answer, difficulty);
+              flashCardScoring.editCard(questionToEdit, description, operation, answer, difficulty);
 
               break;
             }
             case '7': {
-              flashCard.displayQuestionList();
+              flashCardScoring.displayQuestionList();
               string questionToDel;
               cout << "Enter the question to delete: ";
               getline(cin, questionToDel);
@@ -297,10 +299,14 @@ int main () {
                 cout << "Action cancelled." << endl;
                 break;
               }
-              flashCard.deleteQuestionNode(questionToDel);
+              flashCardScoring.deleteQuestionNode(questionToDel);
               break;
             }
             case '8': {
+              flashCardScoring.displayFlashCardOneByOne();
+              break;
+            }
+            case '9': {
               cout<<"Exiting to main menu...\n"<<endl;
               exit = true;
               break;
