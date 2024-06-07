@@ -8,15 +8,19 @@ DoublyLinkedList<T1, T2>::DoublyLinkedList() {
 
 template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::editNode(T1 question, T2 data) {
-  Node* temp = head;
-  while (temp != nullptr) {
-    if (temp->question == question) {
-      temp->data = data;
-      return;
+  try {
+    Node* temp = head;
+    while (temp != nullptr) {
+      if (temp->question == question) {
+        temp->data = data;
+        return;
+      }
+      temp = temp->next;
     }
-    temp = temp->next;
+    throw "Data not found.";
+  } catch (const char* error) {
+    cout << error << endl;
   }
-  cout << "Data not found." << endl;
 }
 
 template <class T1, class T2>
@@ -59,59 +63,70 @@ int DoublyLinkedList<T1, T2>::searchNode(T2 data) const {
 
 template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::deleteQuestionNode(T1 question) {
-  Node* temp = head;
-  while (temp != nullptr) {
-    if (temp->question == question) {
-      if (temp == head) {
-        head = temp->next;
-        head->prev = nullptr;
-        cout << "Card '" << question << "' deleted." << endl;
-        delete temp;
-        return;
-      } else if (temp == tail) {
-        tail = temp->prev;
-        tail->next = nullptr;
-        cout << "Card '" << question << "' deleted." << endl;
-        delete temp;
-        return;
-      } else {
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-        cout << "Card '" << question << "' deleted." << endl;
-        delete temp;
-        return;
+  try {
+    Node* temp = head;
+    while (temp != nullptr) {
+      if (temp->question == question) {
+        if (temp == head) {
+          head = temp->next;
+          head->prev = nullptr;
+          cout << "Card '" << question << "' deleted." << endl;
+          delete temp;
+          return;
+        } else if (temp == tail) {
+          tail = temp->prev;
+          tail->next = nullptr;
+          cout << "Card '" << question << "' deleted." << endl;
+          delete temp;
+          return;
+        } else {
+          temp->prev->next = temp->next;
+          temp->next->prev = temp->prev;
+          cout << "Card '" << question << "' deleted." << endl;
+          delete temp;
+          return;
+        }
       }
+      temp = temp->next;
     }
-    temp = temp->next;
+    throw "Card not found.";
+  } catch (const char* error) {
+    cout << "Error: " << error << endl;
   }
-  cout << "Card not found." << endl;
 }
 
 template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::deleteNode(T2 data) {
-  Node* temp = head;
-  while (temp != nullptr) {
-    if (temp->data == data) {
-      if (temp == head) {
-        head = temp->next;
-        head->prev = nullptr;
-        delete temp;
-        return;
-      } else if (temp == tail) {
-        tail = temp->prev;
-        tail->next = nullptr;
-        delete temp;
-        return;
-      } else {
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-        delete temp;
-        return;
+  try {
+    Node* temp = head;
+    while (temp != nullptr) {
+      if (temp->data == data) {
+        if (temp == head) {
+          head = temp->next;
+          head->prev = nullptr;
+          cout << "Card '" << temp->question << "' deleted." << endl;
+          delete temp;
+          return;
+        } else if (temp == tail) {
+          tail = temp->prev;
+          tail->next = nullptr;
+          cout << "Card '" << temp->question << "' deleted." << endl;
+          delete temp;
+          return;
+        } else {
+          temp->prev->next = temp->next;
+          temp->next->prev = temp->prev;
+          cout << "Card '" << temp->question << "' deleted." << endl;
+          delete temp;
+          return;
+        }
       }
+      temp = temp->next;
     }
-    temp = temp->next;
+    throw "Card not found.";
+  } catch (const char* error) {
+    cout << "Error: " << error << endl;
   }
-  cout << "Data not found." << endl;
 }
 
 template <class T1, class T2>
@@ -126,80 +141,96 @@ DoublyLinkedList<T1, T2>::~DoublyLinkedList() {
 
 template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::insertNode(T1 question, T2 data) {
-  Node* newNode = new Node;
-  Node* nodePtr;
-  Node* previousNode = nullptr;
-
-  newNode->question = question;
-  newNode->data = data;
-
-  if (!head) {
-    head = newNode;
-    tail = newNode;
-    newNode->next = nullptr;
-    newNode->prev = nullptr;
-  } else {
-    nodePtr = head;
-    previousNode = nullptr;
-
-    while (nodePtr != nullptr && nodePtr->question < question) {
-      previousNode = nodePtr;
-      nodePtr = nodePtr->next;
+  try {
+    Node* temp = head;
+    while (temp != nullptr) {
+      if (temp->question == question) {
+        throw "Question already exists.";
+      }
+      temp = temp->next;
     }
+    Node* newNode = new Node;
+    Node* nodePtr;
+    Node* previousNode = nullptr;
 
-    if (previousNode == nullptr) {
+    newNode->question = question;
+    newNode->data = data;
+
+    if (!head) {
       head = newNode;
+      tail = newNode;
+      newNode->next = nullptr;
       newNode->prev = nullptr;
-      newNode->next = nodePtr;
-      if (nodePtr != nullptr) {
-        nodePtr->prev = newNode;
-      }
     } else {
-      previousNode->next = newNode;
-      newNode->prev = previousNode;
-      newNode->next = nodePtr;
+      nodePtr = head;
+      previousNode = nullptr;
 
-      if (nodePtr != nullptr) {
-        nodePtr->prev = newNode;
+      while (nodePtr != nullptr && nodePtr->question < question) {
+        previousNode = nodePtr;
+        nodePtr = nodePtr->next;
+      }
+
+      if (previousNode == nullptr) {
+        head = newNode;
+        newNode->prev = nullptr;
+        newNode->next = nodePtr;
+        if (nodePtr != nullptr) {
+          nodePtr->prev = newNode;
+        }
       } else {
-        tail = newNode;
+        previousNode->next = newNode;
+        newNode->prev = previousNode;
+        newNode->next = nodePtr;
+
+        if (nodePtr != nullptr) {
+          nodePtr->prev = newNode;
+        } else {
+          tail = newNode;
+        }
       }
     }
+  } catch (const char* error) {
+    cout << "Error: " << error << endl;
   }
 }
 
 template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::displayQuestionList() const {
-  Node* temp = head;
-  int i = 0;
-  while (temp != nullptr) {
-    cout << ++i << ". " << temp->question << endl;
-    temp = temp->next;
-  }
-
-  if (head == nullptr) {
-    cout << "List is empty." << endl;
+  try {
+    Node* temp = head;
+    int i = 0;
+    while (temp != nullptr) {
+      cout << ++i << ". " << temp->question << endl;
+      temp = temp->next;
+    }
+    if (head == nullptr) {
+      throw "List is empty.";
+    }
+  } catch (const char* error) {
+    cout << "Warning: " << error << endl;
   }
 }
 
 template <class T1, class T2>
 void DoublyLinkedList<T1, T2>::displayNode(T1 question, string field) const {
-  Node* temp = head;
-  cout << "Displaying " << field << " for '" << question << "':" << endl;
-  const string border = "+------------------------------------------+";
-  while (temp != nullptr) {
-    if (temp->question == question) {
-      cout << border << endl;
-      cout << "Question: " << temp->question << endl;
-      cout << "Data: " << temp->data << endl;
-      cout << border << endl;
-      return;
+  try {
+    Node* temp = head;
+    const string border = "+------------------------------------------+";
+    while (temp != nullptr) {
+      if (temp->question == question) {
+        cout << border << endl;
+        cout << "Question: " << temp->question << endl;
+        cout << "Data: " << temp->data << endl;
+        cout << border << endl;
+        return;
+      }
+      temp = temp->next;
     }
-    temp = temp->next;
-  }
-
-  if (head == nullptr) {
-    cout << "List is empty." << endl;
+    if (head == nullptr) {
+      throw "List is empty.";
+    }
+  } catch (const char* error) {
+    cout << "Warning: " << error << endl;
   }
 }
 
@@ -216,74 +247,89 @@ int DoublyLinkedList<T1, T2>::getNumberOfNodes() const {
 
 template <class T1, class T2>
 T2 DoublyLinkedList<T1, T2>::getNodeValue(T1 question) const {
-  Node* temp = head;
-  while (temp != nullptr) {
-    if (temp->question == question) {
-      return temp->data;
+  try {
+    Node* temp = head;
+    while (temp != nullptr) {
+      if (temp->question == question) {
+        return temp->data;
+      }
+      temp = temp->next;
     }
-    temp = temp->next;
+    throw "Question not found.";
+  } catch (const char* error) {
+    cout << "Error: " << error << endl;
+    return T2();
   }
-  return T2();
 }
 
 template <class T1, class T2>
 T2 DoublyLinkedList<T1, T2>::getHeadValue() const {
-  if (head != nullptr) {
-    return head->data;
-  } else {
-    return T2(); // Return default value if list is empty
+  try {
+    if (head != nullptr) {
+      return head->data;
+    } else {
+      throw "List is empty.";
+    }
+  } catch (const char* error) {
+    cout << "Warning: " << error << endl;
+    return T2();
   }
 }
 
 template <class T1, class T2>
 T2 DoublyLinkedList<T1, T2>::getTailValue() const {
-  if (tail != nullptr) {
-    return tail->data;
-  } else {
-    return T2(); // Return default value if list is empty
+  try {
+    if (tail != nullptr) {
+      return tail->data;
+    } else {
+      throw "List is empty.";
+    }
+  } catch (const char* error) {
+    cout << "Warning: " << error << endl;
+    return T2();
   }
 }
 
 template <class T1, class T2>
 T2 DoublyLinkedList<T1, T2>::getPreviousNodeValue(T1 question) const {
-  Node* temp = head;
-
-  if (question == head->question) {
-    return head->data;
-  }
-
-  while (temp != nullptr) {
-    if (temp->question == question) {
-      if (temp->prev != nullptr) {
-        return temp->prev->data;
-      } else {
-        return T2(); // Return default value if no previous node exists
+  try {
+    Node* temp = head;
+    while (temp != nullptr) {
+      if (temp->question == question) {
+        if (temp->prev != nullptr) {
+          return temp->prev->data;
+        } else {
+          throw "No previous node exists.";
+        }
       }
+      temp = temp->next;
     }
-    temp = temp->next;
+    throw "Question not found.";
+  } catch (const char* error) {
+    cout << "Error: " << error << endl;
+    return T2();
   }
-  return T2(); // Return default value if question not found in the list
 }
 
 template <class T1, class T2>
 T2 DoublyLinkedList<T1, T2>::getNextNodeValue(T1 question) const {
-  Node* temp = head;
-
-  if (question == tail->question) {
-    return tail->data;
-  }
-
-  while (temp != nullptr) {
-    if (temp->question == question) {
-      if (temp->next != nullptr) {
-        return temp->next->data;
-      } else {
-        return T2(); // Return default value if no next node exists
+  try {
+    Node* temp = head;
+    while (temp != nullptr) {
+      if (temp->question == question) {
+        if (temp->next != nullptr) {
+          return temp->next->data;
+        } else {
+          throw "No next node exists.";
+        }
       }
+      temp = temp->next;
     }
-    temp = temp->next;
+    throw "Question not found.";
+  } catch (const char* error) {
+    cout << "Error: " << error << endl;
+    return T2();
   }
-  return T2(); // Return default value if question not found in the list
 }
 
 template class DoublyLinkedList <string, string>;
