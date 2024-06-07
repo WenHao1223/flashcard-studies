@@ -36,6 +36,8 @@ class DoublyLinkedList {
     void displayQuestionList() const;
     void displayNode(T1 question, string field) const;
 
+    int getNumberOfNodes() const;
+
     T2 getHeadValue () const;
     T2 getTailValue () const;
     T2 getNodeValue(T1 question) const;

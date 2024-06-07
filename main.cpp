@@ -303,7 +303,18 @@ int main () {
               break;
             }
             case '8': {
-              flashCardScoring.displayFlashCardOneByOne();
+              int numQuestions;
+              do {
+                cout << "How many questions do you want to answer? ";
+                cin >> numQuestions;
+              } while (numQuestions < 1);
+              for (int i = 0; i < numQuestions; i++) {
+                question = flashCardScoring.displayRandomFlashCard();
+
+                cout << "Enter your answer: ";
+                cin >> answer;
+                flashCardScoring.updateScore(question, answer);
+              }
               break;
             }
             case '9': {

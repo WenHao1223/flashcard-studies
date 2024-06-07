@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 #include "DoublyLinkedList.h"
@@ -40,6 +43,7 @@ class FlashCard {
     void displayFlashCardWithAnswer(T1 question) const;
 
     void displayFlashCardOneByOne() const;
+    T1 displayRandomFlashCard() const;
 
     T2 getDescritionValue(T1 question) const;
     T3 getOperationValue(T1 question) const;

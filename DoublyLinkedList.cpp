@@ -204,6 +204,17 @@ void DoublyLinkedList<T1, T2>::displayNode(T1 question, string field) const {
 }
 
 template <class T1, class T2>
+int DoublyLinkedList<T1, T2>::getNumberOfNodes() const {
+  Node* temp = head;
+  int count = 0;
+  while (temp != nullptr) {
+    count++;
+    temp = temp->next;
+  }
+  return count;
+}
+
+template <class T1, class T2>
 T2 DoublyLinkedList<T1, T2>::getNodeValue(T1 question) const {
   Node* temp = head;
   while (temp != nullptr) {

@@ -190,6 +190,23 @@ void FlashCard<T1, T2, T3, T4, T5>::displayFlashCardOneByOne() const {
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
+T1 FlashCard<T1, T2, T3, T4, T5>::displayRandomFlashCard() const {
+  int random = rand() % questions.getNumberOfNodes();
+  // cout << "Random index: " << random << endl;
+  T1 question = questions.getHeadValue();
+  for (int i = 0; i < random; i++) {
+    if (question == questions.getTailValue()) {
+      break;
+    }
+    question = questions.getNextNodeValue(question);
+  }
+
+  displayFlashCardNoAnswer(question);
+
+  return question;
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
 T2 FlashCard<T1, T2, T3, T4, T5>::getDescritionValue(T1 question) const {
   return descriptions.getNodeValue(question);
 }
