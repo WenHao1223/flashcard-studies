@@ -88,21 +88,22 @@ int main () {
 
           switch (menuChoice) {
             case '1': {
-              cout << "\nDisplaying all flashcards:"<<endl;
+              cout << "\nDisplaying all flashcards..."<<endl;
               flashCardScoring.displayAllFlashCard();
               break;
             }
             case '2': {
-              cout << "\nDisplaying all flash card questions:"<<endl;
+              cout << "\nDisplaying all flashcard questions..."<<endl;
               flashCardScoring.displayQuestionList();
               break;
             }
             case '3': {
-              cout << "\nDisplaying flashcards one by one:"<<endl;
+              cout << "\nDisplaying flashcards one by one..."<<endl;
               flashCardScoring.displayFlashCardOneByOne();
               break;
             }
             case '4': {
+              cout << "Searching for a flashcard..." << endl;
               string search;
               char choice;
               do {
@@ -119,27 +120,17 @@ int main () {
               switch (choice) {
                 case '1': {
                   flashCardScoring.displayQuestionList();
-                  try {
+                  do {
                     cout << "Enter the question to search: ";
                     getline(cin, search);
-                    if (flashCardScoring.searchQuestionNode(search) == -1) {
-                      throw "Question not found.";
-                    }
-                  } catch (const char* error) {
-                    cout << "Error: " << error << endl;
-                  }
+                  } while (search == "");
                   break;
                 }
                 case '2': {
-                  try {
+                  do {
                     cout << "Enter the description to search: ";
                     getline(cin, search);
-                    if (flashCardScoring.searchDescription(search) == -1) {
-                      throw "Description not found.";
-                    }
-                  } catch (const char* error) {
-                    cout << "Error: " << error << endl;
-                  }
+                  } while (search == "");
                   break;
                 }
                 case '3': {
@@ -181,20 +172,30 @@ int main () {
                   cin >> search;
                   cin.ignore();
 
-                  try {
-                    if (flashCardScoring.searchAnswer(stod(search)) == -1) {
-                      throw "Answer not found.";
+                  do {
+                    if (cin.fail()) {
+                      cin.clear();
+                      cin.ignore(10000, '\n');
+                      cout << "Invalid input. Please enter a number." << endl;
+                      cout << "Enter the answer to search: ";
+                      cin >> search;
+                      cin.ignore();
                     }
-                  } catch (const char* error) {
-                    cout << "Error: " << error << endl;
-                  }
+                  } while (cin.fail());
 
                   break;
                 }
                 case '5': {
-                  cout << "Enter the difficulty to search: ";
-                  cin >> search;
-                  cin.ignore();
+                  do {
+                    if (cin.fail()) {
+                      cin.clear();
+                      cin.ignore(10000, '\n');
+                      cout << "Invalid input. Please enter a number." << endl;
+                      cout << "Enter the answer to search: ";
+                      cin >> search;
+                      cin.ignore();
+                    }
+                  } while (search == "");
 
                   try {
                     if (flashCardScoring.searchDifficulty(stoi(search)) == -1) {
@@ -209,15 +210,20 @@ int main () {
               break;
               }
             case '5': {
+              cout << "Adding a flashcard..." << endl;
               char operationChoice;
               string choice;
               do{
-                cout << "Enter the question: ";
-                getline(cin, question);
+                do {
+                  cout << "Enter the question: ";
+                  getline(cin, question);
+                } while (question == "");
 
                 try {
                   if (flashCardScoring.searchQuestionNode(question) != -1) {
                     throw "Question already exists.";
+                  } else {
+                    cout << "Question does not exist. You are good to go." << endl;
                   }
                 } catch (const char* error) {
                   cout << "Error: " << error << endl;
@@ -246,13 +252,18 @@ int main () {
                     operation = "division";
                     break;
                 }
-                
-                cout << "Enter the answer: ";
-                cin >> answer;
-                cin.ignore();
-                cout << "Enter the difficulty: ";
-                cin >> difficulty;
-                cin.ignore();
+
+                do {
+                  cout << "Enter the answer: ";
+                  cin >> answer;
+                  cin.ignore();
+                } while (cin.fail());
+
+                do {
+                  cout << "Enter the difficulty: ";
+                  cin >> difficulty;
+                  cin.ignore();
+                } while (cin.fail());
 
                 flashCardScoring.insertNode(question, description, operation, answer, difficulty);
                 cout << "Card added." << endl;
@@ -264,11 +275,14 @@ int main () {
               break;
             }
             case '6': {
+              cout << "Editing a flashcard..." << endl;
               flashCardScoring.displayQuestionList();
 
               string questionToEdit;
-              cout << "Enter the question to edit: ";
-              getline(cin, questionToEdit);
+              do {
+                cout << "Enter the question to edit: ";
+                getline(cin, questionToEdit);
+              } while (questionToEdit == "");
 
               try {
                 if (flashCardScoring.searchQuestionNode(questionToEdit) == -1) {
@@ -306,8 +320,10 @@ int main () {
 
               switch (fieldChoice) {
                 case '1': {
-                  cout << "Enter the new description: ";
-                  getline(cin, description);
+                  do {
+                    cout << "Enter the new description: ";
+                    getline(cin, description);
+                  } while (description == "");
                   break;
                 }
                 case '2': {
@@ -337,15 +353,19 @@ int main () {
                   break;
                 }
                 case '3': {
-                  cout << "Enter the new answer: ";
-                  cin >> answer;
-                  cin.ignore();
+                  do {
+                    cout << "Enter the new answer: ";
+                    cin >> answer;
+                    cin.ignore();
+                  } while (cin.fail());
                   break;
                 }
                 case '4': {
-                  cout << "Enter the new difficulty: ";
-                  cin >> difficulty;
-                  cin.ignore();
+                  do {
+                    cout << "Enter the new difficulty: ";
+                    cin >> difficulty;
+                    cin.ignore();
+                  } while (cin.fail());
                   break;
                 }
               }
@@ -355,10 +375,13 @@ int main () {
               break;
             }
             case '7': {
+              cout << "Deleting a flashcard..." << endl;
               flashCardScoring.displayQuestionList();
               string questionToDel;
-              cout << "Enter the question to delete: ";
-              getline(cin, questionToDel);
+              do {
+                cout << "Enter the question to delete: ";
+                getline(cin, questionToDel);
+              } while (questionToDel == "");
 
               try {
                 if (flashCardScoring.searchQuestionNode(questionToDel) == -1) {
@@ -382,6 +405,7 @@ int main () {
               break;
             }
             case '8': {
+              cout << "Playing flashcard game..." << endl;
               string name;
               int age;
 
@@ -393,18 +417,25 @@ int main () {
               do {
                 cout << "Enter your age: ";
                 cin >> age;
-                cin.ignore();
-              } while (age < 1);
+                if(cin.fail()) {
+                  cin.clear();
+                  cin.ignore(10000, '\n');
+                }
+              } while (cin.fail() || age < 1);
 
               flashCardScoring.setName(name);
               flashCardScoring.setAge(age);
 
               int numQuestions;
               do {
+                cin.clear();
                 cout << "How many questions do you want to answer? ";
                 cin >> numQuestions;
-                cin.ignore();
-              } while (numQuestions < 1);
+                if(cin.fail()) {
+                  cin.clear();
+                  cin.ignore(10000, '\n');
+                }
+              } while (cin.fail() || numQuestions < 1);
               for (int i = 0; i < numQuestions; i++) {
                 question = flashCardScoring.displayRandomFlashCard();
 
