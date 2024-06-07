@@ -26,10 +26,10 @@ class FlashCard {
     void displayDataField(T1 question, string field) const;
 
     int searchQuestionNode(T1 question) const;
-    void searchDescription(T2 data) const;
-    void searchOperation(T3 data) const;
-    void searchAnswer(T4 data) const;
-    void searchDifficulty(T5 data) const;
+    int searchDescription(T2 data) const;
+    int searchOperation(T3 data) const;
+    int searchAnswer(T4 data) const;
+    int searchDifficulty(T5 data) const;
 
     void deleteQuestionNode(T1 question);
 

@@ -77,11 +77,12 @@ int main () {
             file.open("flashCard.txt");
 
             if(!file) {
-              cout << "Error: File not found." << endl;
+              throw "File not found.";
             }
           } while (!file);
-        } catch (string const exceptionString) {
-          cout << "Error: " << exceptionString << endl;
+        } catch (char const* error) {
+          cout << "Error: " << error << endl;
+          break;
         }
         
         // 5 + 3 = ?	What is 5 plus 3?	addition	8	1
@@ -152,15 +153,27 @@ int main () {
               switch (choice) {
                 case '1': {
                   flashCardScoring.displayQuestionList();
-                  cout << "Enter the question to search: ";
-                  getline(cin, search);
-                  flashCardScoring.searchQuestionNode(search);
+                  try {
+                    cout << "Enter the question to search: ";
+                    getline(cin, search);
+                    if (flashCardScoring.searchQuestionNode(search) == -1) {
+                      throw "Question not found.";
+                    }
+                  } catch (const char* error) {
+                    cout << "Error: " << error << endl;
+                  }
                   break;
                 }
                 case '2': {
-                  cout << "Enter the description to search: ";
-                  getline(cin, search);
-                  flashCardScoring.searchDescription(search);
+                  try {
+                    cout << "Enter the description to search: ";
+                    getline(cin, search);
+                    if (flashCardScoring.searchDescription(search) == -1) {
+                      throw "Description not found.";
+                    }
+                  } catch (const char* error) {
+                    cout << "Error: " << error << endl;
+                  }
                   break;
                 }
                 case '3': {
@@ -186,22 +199,44 @@ int main () {
                       search = "division";
                       break;
                   }
+
+                  try {
+                    if (flashCardScoring.searchOperation(search) == -1) {
+                      throw "Operation not found.";
+                    }
+                  } catch (const char* error) {
+                    cout << "Error: " << error << endl;
+                  }
                   
-                  flashCardScoring.searchOperation(search);
                   break;
                 }
                 case '4': {
                   cout << "Enter the answer to search: ";
                   cin >> search;
                   cin.ignore();
-                  flashCardScoring.searchAnswer(stod(search));
+
+                  try {
+                    if (flashCardScoring.searchAnswer(stod(search)) == -1) {
+                      throw "Answer not found.";
+                    }
+                  } catch (const char* error) {
+                    cout << "Error: " << error << endl;
+                  }
+
                   break;
                 }
                 case '5': {
                   cout << "Enter the difficulty to search: ";
                   cin >> search;
                   cin.ignore();
-                  flashCardScoring.searchDifficulty(stoi(search));
+
+                  try {
+                    if (flashCardScoring.searchDifficulty(stoi(search)) == -1) {
+                      throw "Difficulty not found.";
+                    }
+                  } catch (const char* error) {
+                    cout << "Error: " << error << endl;
+                  }
                   break;
                 }
               }
@@ -213,6 +248,16 @@ int main () {
               do{
                 cout << "Enter the question: ";
                 getline(cin, question);
+
+                try {
+                  if (flashCardScoring.searchQuestionNode(question) != -1) {
+                    throw "Question already exists.";
+                  }
+                } catch (const char* error) {
+                  cout << "Error: " << error << endl;
+                  break;
+                }
+
                 cout << "Enter the description: ";
                 getline(cin, description);
 
@@ -258,6 +303,15 @@ int main () {
               string questionToEdit;
               cout << "Enter the question to edit: ";
               getline(cin, questionToEdit);
+
+              try {
+                if (flashCardScoring.searchQuestionNode(questionToEdit) == -1) {
+                  throw "Question not found.";
+                }
+              } catch (const char* error) {
+                cout << "Error: " << error << endl;
+                break;
+              }
 
               // set the old card details
               flashCardScoring.displayFlashCardWithAnswer(questionToEdit);
@@ -340,8 +394,14 @@ int main () {
               cout << "Enter the question to delete: ";
               getline(cin, questionToDel);
 
-              if (flashCardScoring.searchQuestionNode(questionToDel) == -1)
+              try {
+                if (flashCardScoring.searchQuestionNode(questionToDel) == -1) {
+                  throw "Question not found.";
+                }
+              } catch (const char* error) {
+                cout << "Error: " << error << endl;
                 break;
+              }
 
               do {
                 cout << "Are you sure you want to delete the card? (Y/N): ";

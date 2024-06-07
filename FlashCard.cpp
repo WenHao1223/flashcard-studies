@@ -40,35 +40,35 @@ template <class T1, class T2, class T3, class T4, class T5>
 int FlashCard<T1, T2, T3, T4, T5>::searchQuestionNode(T1 question) const {
   cout << "Searching for question: " << question << endl;
   int result = questions.searchQuestionNode(question);
-  if (result == -1) {
-    cout << "Question not found." << endl;
-  } else {
+  
+  if (result)
     displayFlashCardWithAnswer(question);
-  }
+    
   return result;
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::searchDescription(T2 data) const {
+int FlashCard<T1, T2, T3, T4, T5>::searchDescription(T2 data) const {
   cout << "Searching for description: " << data << endl;
-  descriptions.searchNode(data);
+  return descriptions.searchNode(data);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::searchOperation(T3 data) const {
+int FlashCard<T1, T2, T3, T4, T5>::searchOperation(T3 data) const {
   cout << "Searching for operation: " << data << endl;
-  operations.searchNode(data);
+  return operations.searchNode(data);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::searchAnswer(T4 data) const {
+int FlashCard<T1, T2, T3, T4, T5>::searchAnswer(T4 data) const {
   cout << "Searching for answer: " << data << endl;
-  answers.searchNode(data);
+  return answers.searchNode(data);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::searchDifficulty(T5 data) const {
-  difficulties.searchNode(data);
+int FlashCard<T1, T2, T3, T4, T5>::searchDifficulty(T5 data) const {
+  cout << "Searching for difficulty: " << data << endl;
+  return difficulties.searchNode(data);
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
