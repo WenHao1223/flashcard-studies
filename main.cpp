@@ -504,9 +504,15 @@ int main () {
               for (int i = 0; i < numQuestions; i++) {
                 question = flashCardScoring.displayRandomFlashCard();
 
-                cout << "Enter your answer: ";
-                cin >> answer;
-                cin.ignore();
+                do {
+                  if(cin.fail()) {
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                  }
+                  cout << "Enter your answer: ";
+                  cin >> answer;
+                } while (cin.fail());
+
                 flashCardScoring.updateScore(question, answer);
               }
               flashCardScoring.displayScore();
