@@ -164,8 +164,29 @@ int main () {
                   break;
                 }
                 case '3': {
-                  cout << "Enter the operation to search: ";
-                  getline(cin, search);
+                  char operationChar;
+                  do {
+                    cout << "1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\n";
+                    cout << "Enter the operation to search (1 - 4): ";
+                    cin >> operationChar;
+                    cin.ignore();
+                  } while (operationChar < '1' || operationChar > '4');
+
+                  switch (operationChar) {
+                    case '1':
+                      search = "addition";
+                      break;
+                    case '2':
+                      search = "subtraction";
+                      break;
+                    case '3':
+                      search = "multiplication";
+                      break;
+                    case '4':
+                      search = "division";
+                      break;
+                  }
+                  
                   flashCardScoring.searchOperation(search);
                   break;
                 }
