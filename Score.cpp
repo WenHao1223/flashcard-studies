@@ -15,11 +15,14 @@ void Score<T1, T2, T3, T4, T5>::updateScore(T1 question, T4 userAnswer) {
 
   if (isCorrect) {
     correct++;
+    cout << "Correct!" << endl;
   } else {
     incorrect++;
+    cout << "Incorrect!" << endl;
   }
   total++;
   percentage = (static_cast<double>(correct) / total) * 100;
+  cout << "Score updated: " << correct << "/" << total << endl;
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
@@ -43,6 +46,8 @@ void Score<T1, T2, T3, T4, T5>::resetScore() {
   incorrect = 0;
   total = 0;
   percentage = 0.0;
+
+  cout << "Score reset." << endl;
 }
 
 template class Score<string, string, string, double, int>;

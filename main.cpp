@@ -315,6 +315,7 @@ int main () {
                 cin >> answer;
                 flashCardScoring.updateScore(question, answer);
               }
+              flashCardScoring.displayScore();
               break;
             }
             case '9': {
