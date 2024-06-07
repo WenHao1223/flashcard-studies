@@ -318,6 +318,10 @@ int main () {
               string questionToDel;
               cout << "Enter the question to delete: ";
               getline(cin, questionToDel);
+
+              if (flashCardScoring.searchQuestionNode(questionToDel) == -1)
+                break;
+
               do {
                 cout << "Are you sure you want to delete the card? (Y/N): ";
                 cin >> choice;

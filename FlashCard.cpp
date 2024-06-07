@@ -37,7 +37,7 @@ void FlashCard<T1, T2, T3, T4, T5>::displayDataField(T1 question, string field) 
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::searchQuestionNode(T1 question) const {
+int FlashCard<T1, T2, T3, T4, T5>::searchQuestionNode(T1 question) const {
   cout << "Searching for question: " << question << endl;
   int result = questions.searchQuestionNode(question);
   if (result == -1) {
@@ -45,6 +45,7 @@ void FlashCard<T1, T2, T3, T4, T5>::searchQuestionNode(T1 question) const {
   } else {
     displayFlashCardWithAnswer(question);
   }
+  return result;
 }
 
 template <class T1, class T2, class T3, class T4, class T5>

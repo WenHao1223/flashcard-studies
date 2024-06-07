@@ -25,7 +25,7 @@ class FlashCard {
     void editCard(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty);
     void displayDataField(T1 question, string field) const;
 
-    void searchQuestionNode(T1 question) const;
+    int searchQuestionNode(T1 question) const;
     void searchDescription(T2 data) const;
     void searchOperation(T3 data) const;
     void searchAnswer(T4 data) const;
