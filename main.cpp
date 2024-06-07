@@ -59,7 +59,7 @@ int main () {
       cout << "Enter your choice: ";
       cin >> choice;
       cin.ignore();
-    } while (choice != '1' && choice != '2');
+    } while (choice < '1' || choice > '2');
 
     Score <string, string, string, double, int> flashCardScoring;
     string question, description, operation;
@@ -117,7 +117,7 @@ int main () {
             cout << "Enter your choice: ";
             cin >> menuChoice;
             cin.ignore();
-          } while (menuChoice != '1' && menuChoice != '2' && menuChoice != '3' && menuChoice != '4' && menuChoice != '5' && menuChoice != '6' && menuChoice != '7' && menuChoice != '8');
+          } while (menuChoice < '1' || menuChoice > '9');
 
           switch (menuChoice) {
             case '1': {
@@ -147,27 +147,24 @@ int main () {
                 cout << "Enter your choice: ";
                 cin >> choice;
                 cin.ignore();
-              } while (choice != '1' && choice != '2' && choice != '3' && choice != '4' && choice != '5');
+              } while (choice < '1' || choice > '5');
 
               switch (choice) {
                 case '1': {
                   flashCardScoring.displayQuestionList();
                   cout << "Enter the question to search: ";
-                  cin.ignore();
                   getline(cin, search);
                   flashCardScoring.searchQuestionNode(search);
                   break;
                 }
                 case '2': {
                   cout << "Enter the description to search: ";
-                  cin.ignore();
                   getline(cin, search);
                   flashCardScoring.searchDescription(search);
                   break;
                 }
                 case '3': {
                   cout << "Enter the operation to search: ";
-                  cin.ignore();
                   getline(cin, search);
                   flashCardScoring.searchOperation(search);
                   break;
@@ -175,12 +172,14 @@ int main () {
                 case '4': {
                   cout << "Enter the answer to search: ";
                   cin >> search;
+                  cin.ignore();
                   flashCardScoring.searchAnswer(stod(search));
                   break;
                 }
                 case '5': {
                   cout << "Enter the difficulty to search: ";
                   cin >> search;
+                  cin.ignore();
                   flashCardScoring.searchDifficulty(stoi(search));
                   break;
                 }
@@ -188,11 +187,10 @@ int main () {
               break;
               }
             case '5': {
-              int operationChoice;
+              char operationChoice;
               string choice;
               do{
                 cout << "Enter the question: ";
-                cin.ignore();
                 getline(cin, question);
                 cout << "Enter the description: ";
                 getline(cin, description);
@@ -200,33 +198,36 @@ int main () {
                 do {
                   cout << "1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\nEnter the operation: ";
                   cin >> operationChoice;
-                } while (operationChoice != 1 && operationChoice != 2 && operationChoice != 3 && operationChoice != 4);
+                } while (operationChoice < '1' || operationChoice > '4');
 
                 switch (operationChoice) {
-                  case 1:
+                  case '1':
                     operation = "addition";
                     break;
-                  case 2:
+                  case '2':
                     operation = "subtraction";
                     break;
-                  case 3:
+                  case '3':
                     operation = "multiplication";
                     break;
-                  case 4:
+                  case '4':
                     operation = "division";
                     break;
                 }
                 
                 cout << "Enter the answer: ";
                 cin >> answer;
+                cin.ignore();
                 cout << "Enter the difficulty: ";
                 cin >> difficulty;
+                cin.ignore();
 
                 flashCardScoring.insertNode(question, description, operation, answer, difficulty);
                 cout << "Card added." << endl;
                 flashCardScoring.displayFlashCardWithAnswer(question);
-                cout << "Do you want to add another card? (y/n): ";
+                cout << "Do you want to add another card? (Y/N): ";
                 cin >> choice;
+                cin.ignore();
               } while(choice == "y" || choice == "Y");
               break;
             }
@@ -255,7 +256,7 @@ int main () {
                 cout << "Enter your choice: ";
                 cin >> fieldChoice;
                 cin.ignore();
-              } while (fieldChoice != '1' && fieldChoice != '2' && fieldChoice != '3' && fieldChoice != '4');
+              } while (fieldChoice < '1' || fieldChoice > '4');
 
               switch (fieldChoice) {
                 case '1': {
@@ -294,6 +295,7 @@ int main () {
               do {
                 cout << "Are you sure you want to delete the card? (Y/N): ";
                 cin >> choice;
+                cin.ignore();
               } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N');
               if (choice == 'n' || choice == 'N') {
                 cout << "Action cancelled." << endl;
@@ -314,6 +316,7 @@ int main () {
               do {
                 cout << "Enter your age: ";
                 cin >> age;
+                cin.ignore();
               } while (age < 1);
 
               flashCardScoring.setName(name);
@@ -323,12 +326,14 @@ int main () {
               do {
                 cout << "How many questions do you want to answer? ";
                 cin >> numQuestions;
+                cin.ignore();
               } while (numQuestions < 1);
               for (int i = 0; i < numQuestions; i++) {
                 question = flashCardScoring.displayRandomFlashCard();
 
                 cout << "Enter your answer: ";
                 cin >> answer;
+                cin.ignore();
                 flashCardScoring.updateScore(question, answer);
               }
               flashCardScoring.displayScore();
@@ -344,6 +349,18 @@ int main () {
         break;
       }
       case '2': {
+        char choice;
+        do {
+          cout << "Are you sure you want to terminate the program? (Y/N): ";
+          cin >> choice;
+          cin.ignore();
+        } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N');
+
+        if (choice == 'n' || choice == 'N') {
+          cout << "Action cancelled." << endl;
+          break;
+        }
+        
         cout << "Terminating program..." << endl;
         terminate = true;
         cout << "Program terminated." << endl;
