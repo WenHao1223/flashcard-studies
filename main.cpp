@@ -303,6 +303,22 @@ int main () {
               break;
             }
             case '8': {
+              string name;
+              int age;
+
+              do {
+                cout << "Enter your name: ";
+                getline(cin, name);
+              } while (name == "");
+
+              do {
+                cout << "Enter your age: ";
+                cin >> age;
+              } while (age < 1);
+
+              flashCardScoring.setName(name);
+              flashCardScoring.setAge(age);
+
               int numQuestions;
               do {
                 cout << "How many questions do you want to answer? ";

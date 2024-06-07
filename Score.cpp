@@ -50,4 +50,32 @@ void Score<T1, T2, T3, T4, T5>::resetScore() {
   cout << "Score reset." << endl;
 }
 
+template <class T1, class T2, class T3, class T4, class T5>
+void Score<T1, T2, T3, T4, T5>::setName(string name) {
+  try {
+    if (name == "") {
+      throw "Name cannot be empty.";
+    }
+  } catch (const string error) {
+    cout << error << endl;
+    return;
+  }
+
+  this->name = name;
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+void Score<T1, T2, T3, T4, T5>::setAge(int age) {
+  try {
+    if (age < 0) {
+      throw "Age cannot be negative.";
+    }
+  } catch (const string error) {
+    cout << error << endl;
+    return;
+  }
+
+  this->age = age;
+}
+
 template class Score<string, string, string, double, int>;

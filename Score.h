@@ -24,6 +24,10 @@ class Score : public FlashCard<T1, T2, T3, T4, T5> {
     void updateScore(T1 question, T4 userAnswer);
     void displayScore() const;
     void resetScore();
+
+    // Mutators
+    void setName(string name);
+    void setAge(int age);
 };
 
 #endif
