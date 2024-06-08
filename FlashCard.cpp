@@ -227,17 +227,17 @@ T5 FlashCard<T1, T2, T3, T4, T5>::getDifficultyValue(T1 question) const {
   return difficulties.getNodeValue(question);
 }
 
-template <class T1, class T2, class T3, class T4, class T5>
-double FlashCard<T1, T2, T3, T4, T5>::averageDifficulty(const FlashCard<T1, T2, T3, T4, T5> & card) {
-  double sum = 0;
-  string currentQuestion = card.questions.getHeadValue();
-  sum += card.difficulties.getNodeValue(currentQuestion);
-  do {
-    currentQuestion = card.questions.getNextNodeValue(currentQuestion);
-    sum += card.difficulties.getNodeValue(currentQuestion);
-  } while (currentQuestion != card.questions.getTailValue());
+// template <class T1, class T2, class T3, class T4, class T5>
+// double FlashCard<T1, T2, T3, T4, T5>::averageDifficulty(const FlashCard<T1, T2, T3, T4, T5> & card) {
+//   double sum = 0;
+//   string currentQuestion = card.questions.getHeadValue();
+//   sum += card.difficulties.getNodeValue(currentQuestion);
+//   do {
+//     currentQuestion = card.questions.getNextNodeValue(currentQuestion);
+//     sum += card.difficulties.getNodeValue(currentQuestion);
+//   } while (currentQuestion != card.questions.getTailValue());
 
-  return sum / card.questions.getNumberOfNodes();
-}
+//   return sum / card.questions.getNumberOfNodes();
+// }
 
 template class FlashCard<string, string, string, double, int>;

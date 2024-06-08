@@ -65,19 +65,18 @@ void deleteFileRow(string filename, string question) {
   file.close();
 }
 
-// template <class T1, class T2, class T3, class T4, class T5>
-// double averageDifficulty(const FlashCard<T1, T2, T3, T4, T5>& card) {
-//   T1 currentQuestion = card.questions.getHeadValue();
-//   double sum = 0.0;
-//   int count = 0;
-//   do {
-//     sum += card.difficulties.getNodeValue(currentQuestion);
-//     count++;
-//     currentQuestion = card.questions.getNextNodeValue(currentQuestion);
-//   } while (currentQuestion != card.questions.getTailValue());
+template <class U1, class U2, class U3, class U4, class U5>
+double averageDifficulty(const FlashCard<U1, U2, U3, U4, U5> & card) {
+  double sum = 0;
+  U1 currentQuestion = card.questions.getHeadValue();
+  sum += card.difficulties.getNodeValue(currentQuestion);
+  do {
+    currentQuestion = card.questions.getNextNodeValue(currentQuestion);
+    sum += card.difficulties.getNodeValue(currentQuestion);
+  } while (currentQuestion != card.questions.getTailValue());
 
-//   return sum / count;
-// }
+  return sum / card.questions.getNumberOfNodes();
+}
 
 int main () {
   bool terminate = false;
@@ -485,7 +484,7 @@ int main () {
             }
             case '8': {
               cout << "Playing flashcard game..." << endl;
-              cout << "Average difficulty: " << flashCardScoring.averageDifficulty(flashCardScoring) << endl;
+              cout << "Average difficulty: " << averageDifficulty(flashCardScoring) << endl;
               string name;
               int age;
 
