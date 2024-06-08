@@ -78,6 +78,11 @@ double averageDifficulty(const FlashCard<U1, U2, U3, U4, U5> & card) {
   return sum / card.questions.getNumberOfNodes();
 }
 
+template <class U1, class U2, class U3, class U4, class U5>
+int numberOfQuestions(const FlashCard<U1, U2, U3, U4, U5> & card) {
+  return card.questions.getNumberOfNodes();
+}
+
 int main () {
   bool terminate = false;
   do {
@@ -484,7 +489,10 @@ int main () {
             }
             case '8': {
               cout << "Playing flashcard game..." << endl;
-              cout << "Average difficulty: " << averageDifficulty(flashCardScoring) << endl;
+              cout << "====================================" << endl;
+              cout << setw(28) << left << "|| Number of questions: " << setw(5) << right << numberOfQuestions(flashCardScoring) << " ||" << endl;
+              cout << setw(28) << left << "|| Average difficulty: " << setw(5) << right << averageDifficulty(flashCardScoring) << " ||" << endl;
+              cout << "====================================" << endl;
               string name;
               int age;
 
