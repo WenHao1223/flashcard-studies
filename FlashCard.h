@@ -45,7 +45,7 @@ class FlashCard {
     void displayFlashCardOneByOne() const;
     T1 displayRandomFlashCard() const;
 
-    T2 getDescritionValue(T1 question) const;
+    T2 getDescriptionValue(T1 question) const;
     T3 getOperationValue(T1 question) const;
     T4 getAnswerValue(T1 question) const;
     T5 getDifficultyValue(T1 question) const;

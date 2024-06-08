@@ -208,7 +208,7 @@ T1 FlashCard<T1, T2, T3, T4, T5>::displayRandomFlashCard() const {
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-T2 FlashCard<T1, T2, T3, T4, T5>::getDescritionValue(T1 question) const {
+T2 FlashCard<T1, T2, T3, T4, T5>::getDescriptionValue(T1 question) const {
   return descriptions.getNodeValue(question);
 }
 

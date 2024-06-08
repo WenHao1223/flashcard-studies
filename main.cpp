@@ -375,7 +375,7 @@ int main () {
               // set the old card details
               flashCardScoring.displayFlashCardWithAnswer(questionToEdit);
 
-              description = flashCardScoring.getDescritionValue(questionToEdit);
+              description = flashCardScoring.getDescriptionValue(questionToEdit);
               operation = flashCardScoring.getOperationValue(questionToEdit);
               answer = flashCardScoring.getAnswerValue(questionToEdit);
               difficulty = flashCardScoring.getDifficultyValue(questionToEdit);
