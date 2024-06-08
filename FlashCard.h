@@ -51,6 +51,9 @@ class FlashCard {
     T5 getDifficultyValue(T1 question) const;
 
     void accessQuestions(DoublyLinkedList<T1, T1>& list);
+
+    double averageDifficulty(const FlashCard<T1, T2, T3, T4, T5> & card);
+    // friend double averageDifficulty<>(const FlashCard<T1, T2, T3, T4, T5> & card);
 };
 
 #endif
