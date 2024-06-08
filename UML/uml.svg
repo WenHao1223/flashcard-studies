@@ -838,153 +838,160 @@ font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="197" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ editCard(question : T1, description : T2, operation : T3, answer : T4, difficulty : T5)</text>
+ >+ initialize(fileName : string)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="212" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ displayDataField(question : T1, field : string)</text>
+ >+ editCard(fileName : string, question : T1, description : T2, operation : T3, answer : T4, difficulty : T5)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="227" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ searchQuestionNode(question : T1) : int</text>
+ >+ displayDataField(question : T1, field : string)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="242" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ searchDescription(data : T2) : int</text>
+ >+ searchQuestionNode(question : T1) : int</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="257" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ searchOperation(data : T3) : int</text>
+ >+ searchDescription(data : T2) : int</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="272" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ searchAnswer(data : T4) : int</text>
+ >+ searchOperation(data : T3) : int</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="287" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ searchDifficulty(data : T5) : int</text>
+ >+ searchAnswer(data : T4) : int</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="302" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ deleteQuestionNode(question : T1)</text>
+ >+ searchDifficulty(data : T5) : int</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="317" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ ~FlashCard() «destructor»</text>
+ >+ deleteQuestionNode(fileName : string, question : T1)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="332" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ insertNode(question : T1, description : T2, operation : T3, answer : T4, difficulty : T5)</text>
+ >+ ~FlashCard() «destructor»</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="347" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ displayAllFlashCard()</text>
+ >+ insertNode(question : T1, description : T2, operation : T3, answer : T4, difficulty : T5)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="362" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ displayQuestionList()</text>
+ >+ displayAllFlashCard()</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="377" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ displayFlashCardNoAnswer(question : T1)</text>
+ >+ displayQuestionList()</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="392" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ displayFlashCardWithAnswer(question : T1)</text>
+ >+ displayFlashCardNoAnswer(question : T1)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="407" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ displayFlashCardOneByOne()</text>
+ >+ displayFlashCardWithAnswer(question : T1)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="422" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ displayRandomFlashCard()</text>
+ >+ displayFlashCardOneByOne()</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="437" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ getDescritionValue(question : T1)</text>
+ >+ displayRandomFlashCard()</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="452" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ getOperationValue(question : T1)</text>
+ >+ getDescritionValue(question : T1)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="467" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ getAnswerValue(question : T1)</text>
+ >+ getOperationValue(question : T1)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="482" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ getDifficultyValue(question : T1)</text>
+ >+ getAnswerValue(question : T1)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="497" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
- >+ averageDifficulty(card: FlashCard &lt;U1, U2, U3, U4, U5&gt; &amp;) : double «friend»</text>
+ >+ getDifficultyValue(question : T1)</text>
 </g>
 
 <g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
 font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="512" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
+ >+ averageDifficulty(card: FlashCard &lt;U1, U2, U3, U4, U5&gt; &amp;) : double «friend»</text>
+</g>
+
+<g fill="#ffeea9" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.996864,0,0,0.996864,506.895,136.443)"
+font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
+>
+<text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="5" y="527" font-family="Sans Serif" font-size="12" font-weight="400" font-style="normal" 
  >+ numberOfQuestions(card: FlashCard &lt;U1, U2, U3, U4, U5&gt; &amp;) : int «friend»</text>
 </g>
 
