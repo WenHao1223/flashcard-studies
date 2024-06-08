@@ -50,9 +50,6 @@ class FlashCard {
     T4 getAnswerValue(T1 question) const;
     T5 getDifficultyValue(T1 question) const;
 
-    void accessQuestions(DoublyLinkedList<T1, T1>& list);
-
-    // double averageDifficulty(const FlashCard<T1, T2, T3, T4, T5> & card);
     template <class U1, class U2, class U3, class U4, class U5>
     friend double averageDifficulty(const FlashCard<U1, U2, U3, U4, U5> & card);
 
