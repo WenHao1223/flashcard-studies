@@ -7,7 +7,55 @@ template <class T1, class T2, class T3, class T4, class T5>
 FlashCard<T1, T2, T3, T4, T5>::~FlashCard() {}
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::editCard(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
+void FlashCard<T1, T2, T3, T4, T5>::initialize(string fileName) {
+  // destruct the current flash card object before initializing a new one
+  questions.~DoublyLinkedList();
+  descriptions.~DoublyLinkedList();
+  operations.~DoublyLinkedList();
+  answers.~DoublyLinkedList();
+  difficulties.~DoublyLinkedList();
+
+  ifstream file;
+  T1 question;
+  T2 description;
+  T3 operation;
+  T4 answer;
+  T5 difficulty;
+
+  try {
+    do {
+      file.open(fileName, ios::in);
+
+      if(!file) {
+        throw "File not found.";
+      }
+    } while (!file);
+  } catch (char const* error) {
+    throw error;
+  }
+  
+  while (!file.eof()) {
+    getline(file, question, '\t');
+
+    // check if question contains '\n'
+    if (question.find('\n') != string::npos) {
+      question = question.substr(1, question.length());
+    }
+
+    getline(file, description, '\t');
+    getline(file, operation, '\t');
+    file >> answer;
+    file.ignore();
+    file >> difficulty;
+    file.ignore();
+
+    insertNode(question, description, operation, answer, difficulty);
+  }
+  file.close();
+}
+
+template <class T1, class T2, class T3, class T4, class T5>
+void FlashCard<T1, T2, T3, T4, T5>::editCard(string fileName, T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
   cout << "Editing question: " << question << endl;
   if (questions.searchQuestionNode(question) == -1) {
     cout << "Question not found." << endl;
@@ -18,6 +66,37 @@ void FlashCard<T1, T2, T3, T4, T5>::editCard(T1 question, T2 description, T3 ope
   operations.editNode(question, operation);
   answers.editNode(question, answer);
   difficulties.editNode(question, difficulty);
+
+  /// file handling
+  fstream file;
+  file.open(fileName, ios::in);
+  string line;
+  string questionLine = "";
+  string newFileLines = "";
+
+  while (!file.eof()) {
+    getline(file, questionLine, '\t');
+    getline(file, line);
+
+    // check if questionLine contains '\n'
+    if (questionLine.find('\n') != string::npos) {
+      questionLine = questionLine.substr(1, questionLine.length());
+    }
+
+    if (questionLine == question) {
+      newFileLines += question + "\t" + description + "\t" + operation + "\t" + to_string(answer) + "\t" + to_string(difficulty) + "\n";
+    } else {
+      newFileLines += questionLine + "\t" + line + "\n";
+    }
+  }
+
+  // Remove last line
+  newFileLines = newFileLines.substr(0, newFileLines.length()-1);
+  file.close();
+
+  file.open(fileName, ios::out);
+  file << newFileLines;
+  file.close();
 
   cout << "Card edited. " << endl;
   displayFlashCardWithAnswer(question);
@@ -72,13 +151,41 @@ int FlashCard<T1, T2, T3, T4, T5>::searchDifficulty(T5 data) const {
 }
 
 template <class T1, class T2, class T3, class T4, class T5>
-void FlashCard<T1, T2, T3, T4, T5>::deleteQuestionNode(T1 question) {
+void FlashCard<T1, T2, T3, T4, T5>::deleteQuestionNode(string fileName, T1 question) {
   cout << "Deleting question: " << question << endl;
   questions.deleteQuestionNode(question);
   descriptions.deleteNode(descriptions.getNodeValue(question));
   operations.deleteNode(operations.getNodeValue(question));
   answers.deleteNode(answers.getNodeValue(question));
   difficulties.deleteNode(difficulties.getNodeValue(question));
+
+  fstream file;
+  file.open(fileName, ios::in);
+  string line;
+  string questionLine = "";
+  string newFileLines = "";
+
+  while (!file.eof()) {
+    getline(file, questionLine, '\t');
+    getline(file, line);
+
+    // check if questionLine contains '\n'
+    if (questionLine.find('\n') != string::npos) {
+      questionLine = questionLine.substr(1, questionLine.length());
+    }
+
+    if (questionLine != question) {
+      newFileLines += questionLine + "\t" + line + "\n";
+    }
+  }
+
+  // Remove last line
+  newFileLines = newFileLines.substr(0, newFileLines.length()-1);
+  file.close();
+
+  file.open(fileName, ios::out);
+  file << newFileLines;
+  file.close();
 }
 
 template <class T1, class T2, class T3, class T4, class T5>

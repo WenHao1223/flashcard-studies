@@ -12,59 +12,6 @@ using namespace std;
 #include "FlashCard.h"
 #include "Score.h"
 
-template <class T1, class T2, class T3, class T4, class T5>
-void editFileRow(string filename, T1 question, T2 description, T3 operation, T4 answer, T5 difficulty) {
-  fstream file;
-  file.open(filename, ios::in);
-  string line;
-  string questionLine = "";
-  string newFileLines = "";
-
-  while (!file.eof()) {
-    getline(file, questionLine, '\t');
-    getline(file, line);
-
-    if (questionLine == question) {
-      newFileLines += question + "\t" + description + "\t" + operation + "\t" + to_string(answer) + "\t" + to_string(difficulty) + "\n";
-    } else {
-      newFileLines += questionLine + "\t" + line + "\n";
-    }
-  }
-
-  // Remove last line
-  newFileLines = newFileLines.substr(0, newFileLines.length()-1);
-  file.close();
-
-  file.open(filename, ios::out);
-  file << newFileLines;
-  file.close();
-}
-
-void deleteFileRow(string filename, string question) {
-  fstream file;
-  file.open(filename, ios::in);
-  string line;
-  string questionLine = "";
-  string newFileLines = "";
-
-  while (!file.eof()) {
-    getline(file, questionLine, '\t');
-    getline(file, line);
-
-    if (questionLine != question) {
-      newFileLines += questionLine + "\t" + line + "\n";
-    }
-  }
-
-  // Remove last line
-  newFileLines = newFileLines.substr(0, newFileLines.length()-1);
-  file.close();
-
-  file.open(filename, ios::out);
-  file << newFileLines;
-  file.close();
-}
-
 template <class U1, class U2, class U3, class U4, class U5>
 double averageDifficulty(const FlashCard<U1, U2, U3, U4, U5> & card) {
   double sum = 0;
@@ -107,31 +54,13 @@ int main () {
       case '1': {
         fstream file;
         string fileName = "flashCard.txt";
+        
         try {
-          do {
-            file.open(fileName, ios::in);
-
-            if(!file) {
-              throw "File not found.";
-            }
-          } while (!file);
-        } catch (char const* error) {
+          flashCardScoring.initialize(fileName);
+        } catch (const char* error) {
           cout << "Error: " << error << endl;
           break;
         }
-        
-        while (!file.eof()) {
-          getline(file, question, '\t');
-          getline(file, description, '\t');
-          getline(file, operation, '\t');
-          file >> answer;
-          file.ignore();
-          file >> difficulty;
-          file.ignore();
-
-          flashCardScoring.insertNode(question, description, operation, answer, difficulty);
-        }
-        file.close();
 
         bool exit = false;
         do {
@@ -340,9 +269,9 @@ int main () {
 
                 flashCardScoring.insertNode(question, description, operation, answer, difficulty);
 
-                // file handling
+                ofstream file;
                 file.open(fileName, ios::app);
-                file << '\n' << question << "\t" << description << "\t" << operation << "\t" << answer << "\t" << difficulty;
+                file << endl << question << "\t" << description << "\t" << operation << "\t" << answer << "\t" << difficulty;
                 file.close();
 
                 cout << "Card added." << endl;
@@ -449,10 +378,7 @@ int main () {
                 }
               }
 
-              flashCardScoring.editCard(questionToEdit, description, operation, answer, difficulty);
-
-              // file handling
-              editFileRow <string, string, string, double, int> (fileName, questionToEdit, description, operation, answer, difficulty);
+              flashCardScoring.editCard(fileName, questionToEdit, description, operation, answer, difficulty);
 
               break;
             }
@@ -483,8 +409,7 @@ int main () {
                 cout << "Action cancelled." << endl;
                 break;
               }
-              flashCardScoring.deleteQuestionNode(questionToDel);
-              deleteFileRow(fileName, questionToDel);
+              flashCardScoring.deleteQuestionNode(fileName, questionToDel);
               break;
             }
             case '8': {

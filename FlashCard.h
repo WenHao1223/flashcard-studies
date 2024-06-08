@@ -7,6 +7,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 using namespace std;
 
 #include "DoublyLinkedList.h"
@@ -22,7 +23,9 @@ class FlashCard {
   public:
     FlashCard();
 
-    void editCard(T1 question, T2 description, T3 operation, T4 answer, T5 difficulty);
+    void initialize(string fileName);
+
+    void editCard(string fileName, T1 question, T2 description, T3 operation, T4 answer, T5 difficulty);
     void displayDataField(T1 question, string field) const;
 
     int searchQuestionNode(T1 question) const;
@@ -31,7 +34,7 @@ class FlashCard {
     int searchAnswer(T4 data) const;
     int searchDifficulty(T5 data) const;
 
-    void deleteQuestionNode(T1 question);
+    void deleteQuestionNode(string fileName, T1 question);
 
     ~FlashCard();
 
