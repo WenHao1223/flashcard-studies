@@ -200,7 +200,9 @@ void DoublyLinkedList<T1, T2>::displayQuestionList() const {
     Node* temp = head;
     int i = 0;
     while (temp != nullptr) {
-      cout << ++i << ". " << temp->question << endl;
+      cout << "==================================" << endl;
+      cout << "|| Question " << ++i << ". " << setw(15) << left << temp->question << " ||" << endl;
+      cout << "==================================" << endl;
       temp = temp->next;
     }
     if (head == nullptr) {
