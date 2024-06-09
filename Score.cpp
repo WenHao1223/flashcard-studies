@@ -42,6 +42,8 @@ void Score<T1, T2, T3, T4, T5>::displayScore() const {
 
 template <class T1, class T2, class T3, class T4, class T5>
 void Score<T1, T2, T3, T4, T5>::resetScore() {
+  name = "";
+  age = 0;
   correct = 0;
   incorrect = 0;
   total = 0;

@@ -463,6 +463,7 @@ int main () {
                 flashCardScoring.updateScore(question, answer);
               }
               flashCardScoring.displayScore();
+              flashCardScoring.resetScore();
               break;
             }
             case '9': {
