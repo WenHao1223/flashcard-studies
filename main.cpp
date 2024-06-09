@@ -169,6 +169,14 @@ int main () {
                   cin >> search;
                   cin.ignore();
 
+                  try {
+                    if (flashCardScoring.searchAnswer(stod(search)) == -1) {
+                      throw "Answer not found.";
+                    }
+                  } catch (const char* error) {
+                    cout << "Error: " << error << endl;
+                  }
+
                   do {
                     if (cin.fail()) {
                       cin.clear();
