@@ -154,10 +154,11 @@ template <class T1, class T2, class T3, class T4, class T5>
 void FlashCard<T1, T2, T3, T4, T5>::deleteQuestionNode(string fileName, T1 question) {
   cout << "Deleting question: " << question << endl;
   questions.deleteQuestionNode(question);
-  descriptions.deleteNode(descriptions.getNodeValue(question));
-  operations.deleteNode(operations.getNodeValue(question));
-  answers.deleteNode(answers.getNodeValue(question));
-  difficulties.deleteNode(difficulties.getNodeValue(question));
+  descriptions.deleteQuestionNode(question);
+  operations.deleteQuestionNode(question);
+  answers.deleteQuestionNode(question);
+  difficulties.deleteQuestionNode(question);
+  cout << "Question '" << question <<"' deleted." << endl;
 
   fstream file;
   file.open(fileName, ios::in);

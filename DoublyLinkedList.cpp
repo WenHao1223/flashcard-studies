@@ -70,19 +70,16 @@ void DoublyLinkedList<T1, T2>::deleteQuestionNode(T1 question) {
         if (temp == head) {
           head = temp->next;
           head->prev = nullptr;
-          cout << "Card '" << question << "' deleted." << endl;
           delete temp;
           return;
         } else if (temp == tail) {
           tail = temp->prev;
           tail->next = nullptr;
-          cout << "Card '" << question << "' deleted." << endl;
           delete temp;
           return;
         } else {
           temp->prev->next = temp->next;
           temp->next->prev = temp->prev;
-          cout << "Card '" << question << "' deleted." << endl;
           delete temp;
           return;
         }
