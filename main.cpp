@@ -201,7 +201,7 @@ int main () {
                   difficulty = difficultyChar - '0';
 
                   try {
-                    if (flashCardScoring.searchDifficulty(stoi(search)) == -1) {
+                    if (flashCardScoring.searchDifficulty(difficulty) == -1) {
                       throw "Difficulty not found.";
                     }
                   } catch (const char* error) {
