@@ -37,6 +37,11 @@ void FlashCard<T1, T2, T3, T4, T5>::initialize(string fileName) {
   while (!file.eof()) {
     getline(file, question, '\t');
 
+    // check if question only contains '\n' (last line of the file)
+    if (question == "") {
+      continue;
+    }
+
     // check if question contains '\n'
     if (question.find('\n') != string::npos) {
       question = question.substr(1, question.length());
