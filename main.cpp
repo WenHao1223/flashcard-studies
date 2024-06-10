@@ -309,9 +309,6 @@ int main () {
                 break;
               }
 
-              // set the old card details
-              flashCardScoring.displayFlashCardWithAnswer(questionToEdit);
-
               description = flashCardScoring.getDescriptionValue(questionToEdit);
               operation = flashCardScoring.getOperationValue(questionToEdit);
               answer = flashCardScoring.getAnswerValue(questionToEdit);
