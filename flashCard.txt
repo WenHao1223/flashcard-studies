@@ -2,7 +2,7 @@
 12 - 7 = ?	What is 12 minus 7?	subtraction	5.0	1
 4 * 6 = ?	What is 4 times 6?	multiplication	24.0	2
 20 / 5 = ?	What is 20 divided by 5?	division	4.0	1
-8 + 9 = ?	What is 8 plus 9?	addition	17.000000	1
+8 + 9 = ?	What is 8 plus 9?	addition	4.000000	1
 15 - 3 = ?	What is 15 minus 3?	subtraction	12.0	1
 7 * 2 = ?	What is 7 times 2?	multiplication	14.0	2
 36 / 6 = ?	What is 36 divided by 6?	division	6.0	2

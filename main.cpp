@@ -660,14 +660,18 @@ int main () {
                         cin >> answer;
                         cin.ignore();
 
-                        if (answer == 0) {
-                          backToManageMenu = true;
-                          break;
+                        while (cin.fail()) {
+                          cin.clear();
+                          cin.ignore(10000, '\n');
+                          cout << "Invalid input. Please enter a number." << endl << endl;
+                          cout << "Enter the new answer: ";
+                          cin >> answer;
+                          cin.ignore();
                         }
-
                       } while (cin.fail());
 
-                      if (backToManageMenu) {
+                      if (answer == 0) {
+                        backToManageMenu = true;
                         break;
                       }
 
