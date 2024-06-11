@@ -279,34 +279,35 @@ int main () {
               break;
             }
             case '4': {
+              double searchAns;
               cout << "Press 0 to go back to search menu...\n";
               cout << "Enter the answer to search: ";
-              cin >> search;
-              cin.ignore();
+              do {
+                cin >> searchAns;
+                cin.ignore();
 
-              if(search == "0") {
+                if(cin.fail()) {
+                  cin.clear();
+                  cin.ignore(10000, '\n');
+                  cout << "Invalid input. Please enter a number." << endl;
+                  cout << "Enter the answer to search: ";
+                  cin >> searchAns;
+                  cin.ignore();
+                }
+              } while (cin.fail());
+
+              if(searchAns == 0) {
                 backToSearchMenu = true;
                 break;
               }
 
               try {
-                if (flashCardScoring.searchAnswer(stod(search)) == -1) {
+                if (flashCardScoring.searchAnswer(searchAns) == -1) {
                   throw "Answer not found.";
                 }
               } catch (const char* error) {
                 cout << "Error: " << error << endl;
               }
-
-              do {
-                if (cin.fail()) {
-                  cin.clear();
-                  cin.ignore(10000, '\n');
-                  cout << "Invalid input. Please enter a number." << endl;
-                  cout << "Enter the answer to search: ";
-                  cin >> search;
-                  cin.ignore();
-                }
-              } while (cin.fail());
               break;
             }
             case '5': {
