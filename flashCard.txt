@@ -22,4 +22,3 @@
 18.75 - 6.25 = ?	What is 18.75 minus 6.25?	subtraction	12.5	5
 5.5 + 4.5 = ?	What is 5.5 plus 4.5?	addition	10.0	5
 7 * 5.2 = ?	What is 7 times 5.2?	multiplication	36.4	5
-1	2	multiplication	4	5

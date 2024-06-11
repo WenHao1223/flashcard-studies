@@ -75,18 +75,18 @@ int main () {
         do {
           do {
             cout << "+---------------------------------+" << endl;
+            cout << "0. Back to main menu" << endl;
             cout << "1. Display all flashcard" << endl;
             cout << "2. Display all flashcard questions" << endl;
             cout << "3. Display flashcard one by one" << endl;
-            cout << "4. Back to main menu" << endl;
             cout << "+---------------------------------+\n";
             cout << "Enter your choice: ";
             cin >> displayChoice;
             cin.ignore();
-            if (displayChoice < '1' || displayChoice > '4') {
-              cout << "Invalid input. Please enter a number between 1 and 4." << endl;
+            if (displayChoice < '0' || displayChoice > '3') {
+              cout << "Invalid input. Please enter a number between 0 and 3." << endl;
             }
-          } while (displayChoice < '1' || displayChoice > '4');
+          } while (displayChoice < '0' || displayChoice > '3');
 
           switch (displayChoice) {
             case '1': {
@@ -104,7 +104,7 @@ int main () {
               flashCardScoring.displayFlashCardOneByOne();
               break;
             }
-            case '4': {
+            case '0': {
               char choice;
               do {
                 cout << "Are you sure you want to go back to the main menu? (Y/N): ";
@@ -149,22 +149,22 @@ int main () {
           bool backToSearchMenu = false;
           do {
             cout << "+---------------------------------+" << endl;
+            cout << "0. Back to main menu" << endl;
             cout << "1. Search by question" << endl;
             cout << "2. Search by description" << endl;
             cout << "3. Search by operation" << endl;
             cout << "4. Search by answer" << endl;
             cout << "5. Search by difficulty" << endl;
-            cout << "6. Back to main menu" << endl;
             cout << "+---------------------------------+\n";
             cout << "Enter your choice: ";
             cin >> searchChoice;
             cin.ignore();
-            if (searchChoice < '1' || searchChoice > '6') {
+            if (searchChoice < '0' || searchChoice > '5') {
               cout << "Invalid input. Please enter a number between 1 and 6." << endl;
             }
-          } while (searchChoice < '1' || searchChoice > '6');
+          } while (searchChoice < '0' || searchChoice > '5');
 
-          if (searchChoice == '6') {
+          if (searchChoice == '0') {
             do {
               cout << "Are you sure you want to go back to the main menu? (Y/N): ";
               cin >> choice;
@@ -220,17 +220,17 @@ int main () {
               bool backToSearchMenu = false;
               do {
                 cout << "\n+---------------------------------+\n";
-                cout << "1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\n5 - Back to search menu\n";
+                cout << "0 - Back to search menu\n1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\n";
                 cout << "+---------------------------------+\n";
-                cout << "Enter the operation to search (1 - 5): ";
+                cout << "Enter the operation to search (0 - 4): ";
                 cin >> operationChar;
                 cin.ignore();
-                if (operationChar < '1' || operationChar > '5') {
+                if (operationChar < '0' || operationChar > '4') {
                   cout << "Invalid input. Please enter a number between 1 and 5." << endl;
                 }
-              } while (operationChar < '1' || operationChar > '5');
+              } while (operationChar < '0' || operationChar > '4');
 
-              if (operationChar == '5') {
+              if (operationChar == '0') {
                 char choice;
                 do {
                   cout << "Are you sure you want to go back to the search menu? (Y/N): ";
@@ -281,6 +281,7 @@ int main () {
             case '4': {
               double searchAns;
               cout << "Press 0 to go back to search menu...\n";
+              cout << "eg. 8\n";
               cout << "Enter the answer to search: ";
               do {
                 cin >> searchAns;
@@ -362,20 +363,20 @@ int main () {
             do {
               cout << "Managing flashcard menu..." << endl;
               cout << "+---------------------------------+" << endl;
+              cout << "0. Back to main menu" << endl;
               cout << "1. Add a flashcard" << endl;
               cout << "2. Edit a flashcard" << endl;
               cout << "3. Delete a flashcard" << endl;
-              cout << "4. Back to main menu" << endl;
               cout << "+---------------------------------+\n";
               cout << "Enter your choice: ";
               cin >> manageChoice;
               cin.ignore();
-              if (manageChoice < '1' || manageChoice > '4') {
-                cout << "Invalid input. Please enter a number between 1 and 4." << endl;
+              if (manageChoice < '0' || manageChoice > '3') {
+                cout << "Invalid input. Please enter a number between 0 and 3." << endl;
               }
-            } while (manageChoice < '1' || manageChoice > '4');
+            } while (manageChoice < '0' || manageChoice > '3');
             
-            if (manageChoice == '4') {
+            if (manageChoice == '0') {
               char choice;
               do {
                 cout << "Are you sure you want to go back to the main menu? (Y/N): ";
@@ -404,6 +405,7 @@ int main () {
                 do{
                   backToManageMenu = false;
                   do {
+                    cout << "eg. 5 + 3 = ?\n";
                     cout << "Press 0 to go back to the manage menu...\n";
                     cout << "Enter the question: ";
                     getline(cin, question);
@@ -431,6 +433,7 @@ int main () {
                   }
 
                   do {
+                    cout << "eg. What is 5 plus 3?\n";
                     cout << "Press 0 to go back to the manage menu...\n";
                     cout << "Enter the description: ";
                     getline(cin, description);
@@ -482,6 +485,7 @@ int main () {
                       cin.clear();
                       cin.ignore(10000, '\n');
                     }
+                    cout << "eg. 8\n";
                     cout << "Press 0 to go back to the manage menu...\n";
                     cout << "Enter the answer: ";
                     cin >> answer;
@@ -540,6 +544,7 @@ int main () {
 
                   string questionToEdit;
                   do {
+                    cout << "eg. 5 + 3 = ?\n";
                     cout << "Press 0 to go back to the manage menu...\n";
                     cout << "Enter the question to edit: ";
                     getline(cin, questionToEdit);
@@ -715,6 +720,7 @@ int main () {
                   string questionToDel;
                   char choice;
                   do {
+                    cout << "eg. 5 + 3 = ?\n";
                     cout << "Press 0 to go back to the manage menu...\n";
                     cout << "Enter the question to delete: ";
                     getline(cin, questionToDel);
