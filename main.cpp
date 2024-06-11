@@ -1,21 +1,21 @@
 // Run the following command to compile the code:
 // g++ *.cpp -o main && ./main
 // g++ *.cpp -o main && main
-// g++ main.cpp DoublyLinkedList.cpp FlashCard.cpp Score.cpp -o main & ./main
-// g++ main.cpp DoublyLinkedList.cpp FlashCard.cpp Score.cpp -o main & main
 
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <fstream>
+#include <iostream> // for input / output stream
+#include <string> // for string manipulation
+#include <iomanip> // for input / output manipulation
+#include <fstream> // for file input / output
 using namespace std;
 
-#include "DoublyLinkedList.h"
-#include "FlashCard.h"
-#include "Score.h"
+#include "DoublyLinkedList.h" // preprocessor directive to include the DoublyLinkedList header file
+#include "FlashCard.h" // preprocessor directive to include the FlashCard header file
+#include "Score.h" // preprocessor directive to include the Score header file
 
 /**
  * Calculates the average difficulty of a flashcard.
+ * 
+ * friend function declaring in main.cpp
  *
  * @tparam U1 The type of the flashcard's question.
  * @tparam U2 The type of the flashcard's answer.
@@ -44,6 +44,8 @@ double averageDifficulty(const FlashCard<U1, U2, U3, U4, U5> & card) {
  * This function takes a FlashCard object as input and returns the number of questions
  * stored in the flashcard.
  * 
+ * friend function declaring in main.cpp
+ * 
  * @tparam U1 The type of the first field in the FlashCard object.
  * @tparam U2 The type of the second field in the FlashCard object.
  * @tparam U3 The type of the third field in the FlashCard object.
@@ -56,7 +58,7 @@ double averageDifficulty(const FlashCard<U1, U2, U3, U4, U5> & card) {
  */
 template <class U1, class U2, class U3, class U4, class U5>
 int numberOfQuestions(const FlashCard<U1, U2, U3, U4, U5> & card) {
-  return card.questions.getNumberOfNodes();
+  return card.questions.getNumberOfNodes(); // return the number of questions in the flashcard
 }
 
 /**
@@ -81,10 +83,11 @@ int main () {
     string fileName = "flashCard.txt"; // name of the flashcard file
     
     // try-catch block to handle exceptions when initializing the flashcard file
+    // if the file does not exist, an exception is thrown
     try {
       flashCardScoring.initialize(fileName); // initialize the flashcard file
-    } catch (const char* error) {
-      cout << "Error: " << error << endl;
+    } catch (const char* error) { // catch the exception
+      cout << "Error: " << error << endl; // display the error message
       break;
     }
 
@@ -105,9 +108,9 @@ int main () {
       cout << "Enter your choice: ";
       cin >> menuChoice;
       cin.ignore(); 
-    } while (menuChoice < '1' || menuChoice > '5'); 
+    } while (menuChoice < '1' || menuChoice > '5'); // loop until the user enters a valid choice
 
-    
+    // switch statement to perform the corresponding action based on the user's choice
     switch (menuChoice) {
       // case 1: Display flashcards 
       case '1': { 
@@ -116,7 +119,7 @@ int main () {
         char choice; // variable to store the user's choice
         bool mainMenu = false; // variable to determine if the user wants to return to the main menu
         do {
-          mainMenu = false;
+          mainMenu = false; // set mainMenu to false
           do {
             // display the flashcard sub-menu
             cout << "+---------------------------------+" << endl;
@@ -134,6 +137,7 @@ int main () {
             }
           } while (displayChoice < '0' || displayChoice > '3'); // loop until the user enters a valid choice
 
+          // switch statement to perform the corresponding action based on the user's display choice
           switch (displayChoice) {
             // case 1: Display all flashcards
             case '1': {
@@ -160,6 +164,7 @@ int main () {
               do {
                 cout << "Are you sure you want to go back to the main menu? (Y/N): ";
                 cin >> choice;
+                // input validation
                 if (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
                   cout << "Invalid input. Please enter Y or N." << endl;
                 }
@@ -168,13 +173,13 @@ int main () {
               // if the user chooses not to go back to the main menu
               if (choice == 'n' || choice == 'N') {
                 cout << "Action cancelled." << endl;
-                mainMenu = false;
+                mainMenu = false; // set mainMenu to false to remain in the flashcard sub-menu
                 break;
               }
 
               // if the user chooses to go back to the main menu
               if (choice == 'y' || choice == 'Y') {
-                mainMenu = true;
+                mainMenu = true; // set mainMenu to true to return to the main menu
               }
 
               cout << "Back to main menu..." << endl;
@@ -190,7 +195,7 @@ int main () {
 
             // if the user chooses not to remain in the flashcard sub-menu
             if (choice == 'n' || choice == 'N') {
-              mainMenu = true;
+              mainMenu = true; // set mainMenu to true to return to the main menu
             }
           }
         } while (!mainMenu); // loop until the user chooses to return to the main menu
@@ -352,12 +357,14 @@ int main () {
               }
 
               // try-catch block to handle exceptions when searching for the operation
+              // if the operation is not found, an exception is thrown
               try {
+                // search for the operation
                 if (flashCardScoring.searchOperation(search) == -1) {
-                  throw "Operation not found.";
+                  throw "Operation not found."; // throw an exception if the operation is not found
                 }
-              } catch (const char* error) {
-                cout << "Error: " << error << endl;
+              } catch (const char* error) { // catch the exception
+                cout << "Error: " << error << endl; // display the error message
               }
               
               break;
@@ -390,12 +397,14 @@ int main () {
               }
 
               // try-catch block to handle exceptions when searching for the answer
+              // if the answer is not found, an exception is thrown
               try {
-                if (flashCardScoring.searchAnswer(searchAns) == -1) {
-                  throw "Answer not found.";
+                // search for the answer
+                if (flashCardScoring.searchAnswer(searchAns) == -1) { // if the answer is not found
+                  throw "Answer not found."; // throw an exception
                 }
-              } catch (const char* error) {
-                cout << "Error: " << error << endl;
+              } catch (const char* error) { // catch the exception
+                cout << "Error: " << error << endl; // display the error message
               }
               break;
             }
@@ -423,17 +432,20 @@ int main () {
               difficulty = difficultyChar - '0'; // convert the difficulty choice to an integer
 
               // try-catch block to handle exceptions when searching for the difficulty
+              // if the difficulty is not found, an exception is thrown
               try {
-                if (flashCardScoring.searchDifficulty(difficulty) == -1) {
-                  throw "Difficulty not found.";
+                // search for the difficulty
+                if (flashCardScoring.searchDifficulty(difficulty) == -1) { // if the difficulty is not found
+                  throw "Difficulty not found."; // throw an exception
                 }
-              } catch (const char* error) {
-                cout << "Error: " << error << endl;
+              } catch (const char* error) { // catch the exception
+                cout << "Error: " << error << endl; // display the error message
               }
               break;
             }
           }
 
+          // do-while loop to confirm if the user wants to return to the search menu
           if (backToSearchMenu) {
             continue;
           }
@@ -443,7 +455,7 @@ int main () {
           cin >> choice;
           // input validation
           if (choice == 'n' || choice == 'N') {
-            searchMenu = false;
+            searchMenu = false; // set searchMenu to false to exit the search menu
           }
         }
         break;
@@ -496,9 +508,9 @@ int main () {
               cout << "Back to main menu..." << endl;
               manageMenu = false; // set manageMenu to false to exit the manage menu
               break;
-
             }
 
+            // Switch statement to perform the corresponding action based on the user's manage choice
             switch (manageChoice) {
               // case 1: Add a flashcard
               case '1': {
@@ -523,19 +535,22 @@ int main () {
 
                   } while (question == ""); // loop until the user enters a valid question
 
+                  // if the user chooses to go back to the manage menu
                   if (backToManageMenu) {
                     break;
                   }
 
                   // try-catch block to handle exceptions when adding a flashcard
+                  // if the question already exists, an exception is thrown
                   try {
-                    if (flashCardScoring.searchQuestionNode(question) != -1) {
-                      throw "Question already exists.";
+                    // search for the question
+                    if (flashCardScoring.searchQuestionNode(question) != -1) { // if the question already exists
+                      throw "Question already exists."; // throw an exception
                     } else {
-                      cout << "Question does not exist. You are good to go." << endl;
+                      cout << "Question does not exist. You are good to go." << endl; // display a message if the question does not exist
                     }
-                  } catch (const char* error) {
-                    cout << "Error: " << error << endl;
+                  } catch (const char* error) { // catch the exception
+                    cout << "Error: " << error << endl; // display the error message
                     break;
                   }
 
@@ -548,12 +563,13 @@ int main () {
 
                     // if the user chooses to go back to the manage menu
                     if (description == "0") {
-                      backToManageMenu = true;
+                      backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                       break;
                     }
 
                   } while (description == ""); // loop until the user enters a valid description
 
+                  // if the user chooses to go back to the manage menu
                   if (backToManageMenu) {
                     break;
                   }
@@ -566,16 +582,19 @@ int main () {
 
                     // if the user chooses to go back to the manage menu
                     if (operationChoice == '0') {
-                      backToManageMenu = true;
+                      backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                       break;
                     }
 
                   } while (operationChoice < '1' || operationChoice > '4'); // loop until the user enters a valid operation choice
 
+                  // if the user chooses to go back to the manage menu
                   if (backToManageMenu) {
                     break;
                   }
 
+                  // convert the operation choice to a string
+                  // this string is used to store the operation of the flashcard
                   switch (operationChoice) {
                     case '1':
                       operation = "addition";
@@ -593,6 +612,7 @@ int main () {
 
                   // do-while loop to get the user's answer
                   do {
+                    // get the user's answer
                     if(cin.fail()) {
                       cin.clear();
                       cin.ignore(10000, '\n'); // clear the input buffer
@@ -604,12 +624,13 @@ int main () {
                     
                     // if the user chooses to go back to the manage menu
                     if (answer == 0) {
-                      backToManageMenu = true;
+                      backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                       break;
                     }
 
                   } while (cin.fail()); // loop until the user enters a valid answer
 
+                  // if the user chooses to go back to the manage menu
                   if (backToManageMenu) {
                     break;
                   }
@@ -623,12 +644,13 @@ int main () {
 
                     // if the user chooses to go back to the manage menu
                     if (difficultyChoice == '0') {
-                      backToManageMenu = true;
+                      backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                       break;
                     }
 
                   } while (difficultyChoice < '1' || difficultyChoice > '5'); // loop until the user enters a valid difficulty choice
 
+                  // if the user chooses to go back to the manage menu
                   if (backToManageMenu) {
                     break;
                   }
@@ -674,28 +696,31 @@ int main () {
 
                   } while (questionToEdit == ""); // loop until the user enters a valid question to edit
 
+                  // if the user chooses to go back to the manage menu
                   if (backToManageMenu) {
                     break;
                   }
 
                   // try-catch block to handle exceptions when editing a flashcard
+                  // if the question is not found, an exception is thrown
                   try {
-                    if (flashCardScoring.searchQuestionNode(questionToEdit) == -1) {
-                      throw "Question not found.";
+                    // search for the question
+                    if (flashCardScoring.searchQuestionNode(questionToEdit) == -1) { // if the question is not found
+                      throw "Question not found."; // throw an exception
                     }
-                  } catch (const char* error) {
-                    cout << "Error: " << error << endl;
+                  } catch (const char* error) { // catch the exception
+                    cout << "Error: " << error << endl; // display the error message
                     break;
                   }
 
                   // get the description, operation, answer, and difficulty of the flashcard to edit
-                  description = flashCardScoring.getDescriptionValue(questionToEdit);
-                  operation = flashCardScoring.getOperationValue(questionToEdit);
-                  answer = flashCardScoring.getAnswerValue(questionToEdit);
-                  difficulty = flashCardScoring.getDifficultyValue(questionToEdit);
+                  description = flashCardScoring.getDescriptionValue(questionToEdit); // get the description
+                  operation = flashCardScoring.getOperationValue(questionToEdit); // get the operation
+                  answer = flashCardScoring.getAnswerValue(questionToEdit); // get the answer
+                  difficulty = flashCardScoring.getDifficultyValue(questionToEdit); // get the difficulty
 
+                  // if the description is empty
                   if (description == "") {
-                    // if the question does not exist
                     break;
                   }
 
@@ -712,8 +737,9 @@ int main () {
                     cin >> fieldChoice;
                     cin.ignore();
 
+                    // if the user chooses to go back to the manage menu
                     if (fieldChoice == '0') {
-                      backToManageMenu = true;
+                      backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                       break;
                     }
 
@@ -723,6 +749,7 @@ int main () {
                     }
                   } while (fieldChoice < '1' || fieldChoice > '4'); // loop until the user enters a valid field choice
 
+                  // switch statement to perform the corresponding action based on the user's field choice
                   switch (fieldChoice) {
                     // case 1: Edit the description
                     case '1': {
@@ -732,12 +759,13 @@ int main () {
                         
                         // if the user chooses to go back to the manage menu
                         if (description == "0") {
-                          backToManageMenu = true;
+                          backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                           break;
                         }
 
                       } while (description == ""); // loop until the user enters a valid description
 
+                      // if the user chooses to go back to the manage menu
                       if (backToManageMenu) {
                         break;
                       }
@@ -766,6 +794,7 @@ int main () {
                         }
                       } while (operationChar < '1' || operationChar > '4'); // loop until the user enters a valid operation choice
 
+                      // if the user chooses to go back to the manage menu
                       if (backToManageMenu) {
                         break;
                       }
@@ -808,7 +837,7 @@ int main () {
 
                       // if the user chooses to go back to the manage menu
                       if (answer == 0) {
-                        backToManageMenu = true;
+                        backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                         break;
                       }
 
@@ -824,12 +853,13 @@ int main () {
 
                         // if the user chooses to go back to the manage menu
                         if (difficulty == 0) {
-                          backToManageMenu = true;
+                          backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                           break;
                         }
 
                       } while (cin.fail()); // loop until the user enters a valid difficulty
 
+                      // if the user chooses to go back to the manage menu
                       if (backToManageMenu) {
                         break;
                       }
@@ -864,23 +894,26 @@ int main () {
 
                     // if the user chooses to go back to the manage menu
                     if (questionToDel == "0") {
-                      backToManageMenu = true;
+                      backToManageMenu = true; // set backToManageMenu to true to return to the manage menu
                       break;
                     }
 
                   } while (questionToDel == ""); // loop until the user enters a valid question to delete
 
+                  // if the user chooses to go back to the manage menu
                   if (backToManageMenu) {
                     break;
                   }
 
                   // try-catch block to handle exceptions when deleting a flashcard
+                  // if the question is not found, an exception is thrown
                   try {
-                    if (flashCardScoring.searchQuestionNode(questionToDel) == -1) {
-                      throw "Question not found.";
+                    // search for the question
+                    if (flashCardScoring.searchQuestionNode(questionToDel) == -1) { // if the question is not found
+                      throw "Question not found."; // throw an exception
                     }
-                  } catch (const char* error) {
-                    cout << "Error: " << error << endl;
+                  } catch (const char* error) { // catch the exception
+                    cout << "Error: " << error << endl; // display the error message
                     break;
                   }
 
@@ -929,6 +962,7 @@ int main () {
           do {
             cout << "Enter your age: ";
             cin >> age;
+            // if the input is invalid
             if(cin.fail()) {
               cin.clear();
               cin.ignore(10000, '\n'); // clear the input buffer
@@ -944,6 +978,7 @@ int main () {
             cin.clear(); // clear the input buffer
             cout << "How many questions do you want to answer? ";
             cin >> numQuestions;
+            // if the input is invalid
             if(cin.fail()) {
               cin.clear();
               cin.ignore(10000, '\n'); // clear the input buffer
@@ -956,7 +991,8 @@ int main () {
 
             // do-while loop to get the user's answer
             do {
-              if(cin.fail()) {
+              // if the input is invalid
+              if(cin.fail()) { 
                 cin.clear();
                 cin.ignore(10000, '\n'); // clear the input buffer
               }
