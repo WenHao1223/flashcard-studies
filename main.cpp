@@ -73,6 +73,7 @@ int main () {
         char choice;
         bool mainMenu = false;
         do {
+          mainMenu = false;
           do {
             cout << "+---------------------------------+" << endl;
             cout << "0. Back to main menu" << endl;
@@ -116,10 +117,14 @@ int main () {
 
               if (choice == 'n' || choice == 'N') {
                 cout << "Action cancelled." << endl;
+                mainMenu = false;
                 break;
               }
 
-              mainMenu = true;
+              if (choice == 'y' || choice == 'Y') {
+                mainMenu = true;
+              }
+
 
               cout << "Back to main menu..." << endl;
               break;
@@ -135,7 +140,7 @@ int main () {
               mainMenu = true;
             }
           }
-        } while (choice == 'y' || choice == 'Y' || !mainMenu);
+        } while (!mainMenu);
         break;
       }
       case '2': {
