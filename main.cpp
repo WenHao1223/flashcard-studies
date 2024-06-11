@@ -564,8 +564,6 @@ int main () {
                     break;
                   }
 
-                  flashCardScoring.displayFlashCardWithAnswer(questionToEdit);
-
                   description = flashCardScoring.getDescriptionValue(questionToEdit);
                   operation = flashCardScoring.getOperationValue(questionToEdit);
                   answer = flashCardScoring.getAnswerValue(questionToEdit);
