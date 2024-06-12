@@ -460,10 +460,10 @@ int main () {
               // display the manage menu
               cout << "Managing flashcard menu..." << endl;
               cout << "+---------------------------------+" << endl;
-              cout << "0. Back to main menu" << endl;
               cout << "1. Add a flashcard" << endl;
               cout << "2. Edit a flashcard" << endl;
               cout << "3. Delete a flashcard" << endl;
+              cout << "0. Back to main menu" << endl;
               cout << "+---------------------------------+\n";
               cout << "Enter your choice: ";
               cin >> manageChoice;
@@ -618,7 +618,7 @@ int main () {
                   // do-while loop to get the user's difficulty choice
                   do {
                     cout << "Press 0 to go back to the manage menu...\n";
-                    cout << "Enter the difficulty (1 - 5): ";
+                    cout << "Enter the difficulty (0 - 5): ";
                     cin >> difficultyChoice;
 
                     // if the user chooses to go back to the manage menu
@@ -627,7 +627,7 @@ int main () {
                       break;
                     }
 
-                  } while (difficultyChoice < '1' || difficultyChoice > '5'); // loop until the user enters a valid difficulty choice
+                  } while (difficultyChoice < '0' || difficultyChoice > '5'); // loop until the user enters a valid difficulty choice
 
                   if (backToManageMenu) {
                     break;
@@ -727,6 +727,7 @@ int main () {
                     // case 1: Edit the description
                     case '1': {
                       do {
+                        cout << "eg. What is 5 plus 3?\n";
                         cout << "Enter the new description: ";
                         getline(cin, description);
                         
@@ -750,7 +751,7 @@ int main () {
                       char operationChar; // variable to store the user's operation choice
                       // do-while loop to get the user's operation choice
                       do {
-                        cout << "Enter the new operation: ";
+                        cout << "Enter the new operation (1 - 4): ";
                         cin >> operationChar;
                         cin.ignore();
 
@@ -792,6 +793,7 @@ int main () {
                     case '3': {
                       // do-while loop to get the user's answer
                       do {
+                        cout << "eg. 8\n";
                         cout << "Enter the new answer: ";
                         cin >> answer;
                         cin.ignore();
@@ -818,7 +820,7 @@ int main () {
                     case '4': {
                       // do-while loop to get the user's difficulty
                       do {
-                        cout << "Enter the new difficulty: ";
+                        cout << "Enter the new difficulty (1-5): ";
                         cin >> difficulty;
                         cin.ignore();
 
