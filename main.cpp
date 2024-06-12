@@ -188,7 +188,7 @@ int main () {
           }
 
           // do-while loop to confirm if the user wants to remain in the flashcard sub-menu
-          if (!mainMenu && displayChoice != '4') {
+          if (!mainMenu && displayChoice != '0') {
             cout << "Would you like to remain in the flashcard sub-menu? (Y/N): ";
             cin >> choice;
             cout << "\n";
