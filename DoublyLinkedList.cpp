@@ -66,7 +66,7 @@ int DoublyLinkedList<T1, T2>::searchQuestionNode(T1 question) const {
   while (temp != nullptr) {
     // Check if the question of the current node matches the specified question
     if (temp->question == question) {
-      return 1; // Return the index of the node
+      return 1; // Return 1 if the question is found
     }
     temp = temp->next; // Move to the next node
   }
