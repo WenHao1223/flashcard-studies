@@ -133,7 +133,7 @@ int main () {
             cin.ignore();
             // input validation
             if (displayChoice < '0' || displayChoice > '3') {
-              cout << "Invalid input. Please enter a number between 0 and 3." << endl;
+              cout << "Invalid input. Please enter a number between 0 to 3." << endl;
             }
           } while (displayChoice < '0' || displayChoice > '3'); // loop until the user enters a valid choice
 
@@ -188,9 +188,15 @@ int main () {
           }
 
           // do-while loop to confirm if the user wants to remain in the flashcard sub-menu
-          if (!mainMenu && displayChoice != '4') {
+          if (!mainMenu && displayChoice != '0') {
             cout << "Would you like to remain in the flashcard sub-menu? (Y/N): ";
-            cin >> choice;
+            do {
+              cin >> choice; // get the user's choice
+              // input validation
+              if (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
+                cout << "Invalid input. Please enter Y or N." << endl;
+              }
+            } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N'); // loop until the user enters a valid choice
             cout << "\n";
 
             // if the user chooses not to remain in the flashcard sub-menu
@@ -227,33 +233,9 @@ int main () {
             cin.ignore();
             // input validation
             if (searchChoice < '0' || searchChoice > '5') {
-              cout << "Invalid input. Please enter a number between 1 and 6." << endl;
+              cout << "Invalid input. Please enter a number between 0 to 5." << endl;
             }
           } while (searchChoice < '0' || searchChoice > '5'); // loop until the user enters a valid choice
-
-          // if the user chooses to go back to the main menu
-          if (searchChoice == '0') {
-            // do-while loop to confirm if the user wants to go back to the main menu
-            do {
-              cout << "Are you sure you want to go back to the main menu? (Y/N): ";
-              cin >> choice;
-              // input validation
-              if (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
-                cout << "Invalid input. Please enter Y or N." << endl;
-              }
-            } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N'); // loop until the user enters a valid choice
-
-            // if the user chooses not to go back to the main menu
-            if (choice == 'n' || choice == 'N') {
-              cout << "Action cancelled." << endl;
-              break;
-            }
-
-            // if the user chooses to go back to the main menu
-            cout << "Back to main menu..." << endl;
-            searchMenu = false; // set searchMenu to false to exit the search menu
-            break;
-          }
 
           switch (searchChoice) {
             // case 1: Search by question
@@ -308,7 +290,7 @@ int main () {
                 cin.ignore();
                 // input validation
                 if (operationChar < '0' || operationChar > '4') {
-                  cout << "Invalid input. Please enter a number between 1 and 5." << endl;
+                  cout << "Invalid input. Please enter a number between 0 to 4." << endl;
                 }
               } while (operationChar < '0' || operationChar > '4'); // loop until the user enters a valid choice
 
@@ -443,6 +425,32 @@ int main () {
               }
               break;
             }
+            // if the user chooses to go back to the main menu
+            case '0': {
+              // do-while loop to confirm if the user wants to go back to the main menu
+              do {
+                cout << "Are you sure you want to go back to the main menu? (Y/N): ";
+                cin >> choice;
+                // input validation
+                if (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
+                  cout << "Invalid input. Please enter Y or N." << endl;
+                }
+              } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N'); // loop until the user enters a valid choice
+
+              // if the user chooses not to go back to the main menu
+              if (choice == 'n' || choice == 'N') {
+                searchMenu = true; // set searchMenu to true to remain in the search menu
+                cout << "Action cancelled." << endl;
+                break;
+              }
+
+              if (choice == 'y' || choice == 'Y') {
+                cout << "Back to main menu..." << endl;
+                searchMenu = false; // set searchMenu to false to exit the search menu
+              }
+
+              break;
+            }
           }
 
           // do-while loop to confirm if the user wants to return to the search menu
@@ -450,12 +458,21 @@ int main () {
             continue;
           }
 
-          // do-while loop to confirm if the user wants to search another flashcard
-          cout << "Do you want to search another flashcard? (Y/N): ";
-          cin >> choice;
-          // input validation
-          if (choice == 'n' || choice == 'N') {
-            searchMenu = false; // set searchMenu to false to exit the search menu
+          if (searchMenu && searchChoice != '0') {
+            do {
+              // do-while loop to confirm if the user wants to search another flashcard
+              cout << "Do you want to search another flashcard? (Y/N): ";
+              cin >> choice;
+              // input validation
+              if (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
+                cout << "Invalid input. Please enter Y or N." << endl;
+              }
+            } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N'); // loop until the user enters a valid choice
+
+            // input validation
+            if (choice == 'n' || choice == 'N') {
+              searchMenu = false; // set searchMenu to false to exit the search menu
+            }
           }
         }
         break;
@@ -472,43 +489,19 @@ int main () {
               // display the manage menu
               cout << "Managing flashcard menu..." << endl;
               cout << "+---------------------------------+" << endl;
-              cout << "0. Back to main menu" << endl;
               cout << "1. Add a flashcard" << endl;
               cout << "2. Edit a flashcard" << endl;
               cout << "3. Delete a flashcard" << endl;
+              cout << "0. Back to main menu" << endl;
               cout << "+---------------------------------+\n";
               cout << "Enter your choice: ";
               cin >> manageChoice;
               cin.ignore();
               // input validation
               if (manageChoice < '0' || manageChoice > '3') {
-                cout << "Invalid input. Please enter a number between 0 and 3." << endl;
+                cout << "Invalid input. Please enter a number between 0 to 3." << endl;
               }
             } while (manageChoice < '0' || manageChoice > '3'); // loop until the user enters a valid choice
-            
-            // if the user chooses to go back to the main menu
-            if (manageChoice == '0') {
-              char choice; // variable to store the user's choice
-              // do-while loop to confirm if the user wants to go back to the main menu
-              do {
-                cout << "Are you sure you want to go back to the main menu? (Y/N): ";
-                cin >> choice;
-                // input validation
-                if (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
-                  cout << "Invalid input. Please enter Y or N." << endl;
-                }
-              } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N'); // loop until the user enters a valid choice
-
-              // if the user chooses not to go back to the main menu
-              if (choice == 'n' || choice == 'N') {
-                cout << "Action cancelled." << endl;
-                break;
-              } 
-              
-              cout << "Back to main menu..." << endl;
-              manageMenu = false; // set manageMenu to false to exit the manage menu
-              break;
-            }
 
             // Switch statement to perform the corresponding action based on the user's manage choice
             switch (manageChoice) {
@@ -745,7 +738,7 @@ int main () {
 
                     // input validation
                     if (fieldChoice < '1' || fieldChoice > '4') {
-                      cout << "Invalid input. Please enter a number between 1 and 4." << endl;
+                      cout << "Invalid input. Please enter a number between 1 to 4." << endl;
                     }
                   } while (fieldChoice < '1' || fieldChoice > '4'); // loop until the user enters a valid field choice
 
@@ -790,7 +783,7 @@ int main () {
 
                         // input validation
                         if (operationChar < '1' || operationChar > '4') {
-                          cout << "Invalid input. Please enter a number between 1 and 4." << endl;
+                          cout << "Invalid input. Please enter a number between 1 to 4." << endl;
                         }
                       } while (operationChar < '1' || operationChar > '4'); // loop until the user enters a valid operation choice
 
@@ -933,6 +926,34 @@ int main () {
                   cout << "Do you want to delete another card? (Y/N): ";
                   cin >> userChoice;
                 } while ((userChoice == 'y' || userChoice == 'Y') && !backToManageMenu); // loop until the user chooses not to delete another card
+                break;
+              }
+              // if the user chooses to go back to the main menu
+              case '0': {
+                char choice; // variable to store the user's choice
+
+                // do-while loop to confirm if the user wants to go back to the main menu
+                do {
+                  cout << "Are you sure you want to go back to the main menu? (Y/N): ";
+                  cin >> choice;
+                  // input validation
+                  if (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
+                    cout << "Invalid input. Please enter Y or N." << endl;
+                  }
+                } while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N'); // loop until the user enters a valid choice
+
+                // if the user chooses not to go back to the main menu
+                if (choice == 'n' || choice == 'N') {
+                  manageMenu = true; // set manageMenu to true to remain in the manage menu
+                  cout << "Action cancelled." << endl;
+                  break;
+                } 
+
+                if (choice == 'y' || choice == 'Y') {
+                  cout << "Back to main menu..." << endl;
+                  manageMenu = false; // set manageMenu to false to exit the manage menu;
+                }
+
                 break;
               }
             }
